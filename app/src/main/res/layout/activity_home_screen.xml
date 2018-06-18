@@ -6,13 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreenActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="12dp"
+        android:text="Terms"
+        app:layout_constraintBottom_toTopOf="@+id/btn_courses"
+        tools:layout_editor_absoluteX="148dp" />
 
+    <Button
+        android:id="@+id/btn_courses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Courses"
+        app:layout_constraintBottom_toTopOf="@+id/btn_mentors"
+        tools:layout_editor_absoluteX="148dp" />
+
+    <Button
+        android:id="@+id/btn_mentors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mentors"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="366dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="203dp"
+        android:layout_height="236dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wgu_logo_512" />
 </android.support.constraint.ConstraintLayout>
