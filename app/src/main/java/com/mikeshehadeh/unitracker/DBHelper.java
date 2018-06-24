@@ -17,8 +17,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         final String SQL_CREATE_TERM_TABLE = "CREATE TABLE " + termTable.TABLE_NAME + " (" +
                 termTable.COLUMN_TERM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                termTable.COLUMN_TERM_STARTDATE + " DATETIME, " +
-                termTable.COLUMN_TERM_ENDDATE + " DATETIME);"
+                termTable.COLUMN_TERM_STARTDATE + " TEXT, " +
+                termTable.COLUMN_TERM_ENDDATE + " TEXT);"
                 ;
 
 
@@ -35,8 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 courseTable.COLUMN_COURSE_NAME + " TEXT NOT NULL, " +
                 courseTable.COLUMN_CU + " INT NOT NULL, " +
                 courseTable.COLUMN_TERM_ID + " INT, " +
-                courseTable.COLUMN_STARTDATE + " DATETIME, " +
-                courseTable.COLUMN_ENDDATE_ANTIC + " DATETIME, " +
+                courseTable.COLUMN_STARTDATE + " TEXT, " +
+                courseTable.COLUMN_ENDDATE_ANTIC + " TEXT, " +
                 "FOREIGN KEY (" + courseTable.COLUMN_TERM_ID +
                 ") REFERENCES " + termTable.TABLE_NAME +
                 "(" + termTable.COLUMN_TERM_ID + "));"
@@ -72,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 alertTable.COLUMN_ALERT_TYPE + " TEXT NOT NULL, " +
                 alertTable.COLUMN_COURSE_ID + " INTEGER, " +
                 alertTable.COLUMN_ASSESSMENT_ID + " INTEGER, " +
-                alertTable.COLUMN_ALERT_DATETIME + " DATETIME NOT NULL, " +
+                alertTable.COLUMN_ALERT_DATETIME + " TEXT NOT NULL, " +
                 "FOREIGN KEY (" + alertTable.COLUMN_COURSE_ID +
                 ") REFERENCES " + courseTable.TABLE_NAME +
                 "(" + courseTable.COLUMN_COURSE_ID + "), " +

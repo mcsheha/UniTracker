@@ -1,6 +1,8 @@
 
 package com.mikeshehadeh.unitracker;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +16,20 @@ import java.util.ArrayList;
 public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermListViewHolder> {
     private ArrayList<TermItem> mTermList;
     private OnItemClickListener mListener;
+    private Context mContext;
+    private Cursor mCursor;
+
+/*
 
     public TermListAdapter(ArrayList<TermItem> termList) {
         mTermList = termList;
 
+    }
+*/
+
+    public TermListAdapter (Context context, Cursor cursor){
+        mContext = context;
+        mCursor = cursor;
     }
 
     public interface OnItemClickListener{
@@ -69,16 +81,44 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
 
     @Override
     public void onBindViewHolder(@NonNull TermListViewHolder holder, int position) {
+        if (!mCursor.moveToPosition(position)) {
+            return;
+        }
+        String termID = "Term " + mCursor.getString(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
+        String termDates = mCursor.getString(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_STARTDATE)) + " - " +
+                mCursor.getString((mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ENDDATE)));
+        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
+
+        holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
+        holder.mTextView1.setText(termID);
+        holder.mTextView2.setText(termDates);
+        holder.itemView.setTag(id);
+    }
+/*
+
+    @Override
+    public void onBindViewHolder(@NonNull TermListViewHolder holder, int position) {
         TermItem currentItem = mTermList.get(position);
 
         holder.mImageView.setImageResource(currentItem.getmImageResource());
         holder.mTextView1.setText(currentItem.getTermNumber());
         holder.mTextView2.setText(currentItem.getTermDates());
     }
+*/
 
     @Override
     public int getItemCount() {
-        return mTermList.size();
+        return mCursor.getCount();
+    }
+
+    public void swapCursor(Cursor newCursor) {
+        if (mCursor != null) {
+            mCursor.close();
+        }
+        mCursor = newCursor;
+        if (newCursor != null) {
+            notifyDataSetChanged();
+        }
     }
 }
 
