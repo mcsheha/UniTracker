@@ -9,14 +9,22 @@ package="com.mikeshehadeh.unitracker">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".TermListActivity">
+<!--    <activity android:name=".TermListActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".HomeScreenActivity"></activity>
+    <activity android:name=".HomeScreenActivity"></activity>-->
+    <activity android:name=".HomeScreenActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity android:name=".TermListActivity"></activity>
 </application>
 
 </manifest>

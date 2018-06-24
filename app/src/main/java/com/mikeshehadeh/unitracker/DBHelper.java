@@ -44,8 +44,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         final String SQL_CREATE_COURSE_MENTOR_TABLE = "CREATE TABLE " + courseMentorTable.TABLE_NAME + " (" +
-                courseMentorTable.COLUMN_COURSE_ID + " INTEGER PRIMARY KEY, " +
-                courseMentorTable.COLUMN_MENTOR_ID + " INTEGER PRIMARY KEY, " +
+                courseMentorTable.COLUMN_COURSE_ID + " INTEGER, " +
+                courseMentorTable.COLUMN_MENTOR_ID + " INTEGER, PRIMARY KEY(" +
+                courseMentorTable.COLUMN_MENTOR_ID + ", " + courseMentorTable.COLUMN_COURSE_ID + "), " +
                 "FOREIGN KEY (" + courseMentorTable.COLUMN_COURSE_ID +
                 ") REFERENCES " + courseTable.TABLE_NAME +
                 "(" + courseTable.COLUMN_COURSE_ID + "), " +

@@ -1,3 +1,4 @@
+
 package com.mikeshehadeh.unitracker;
 
 import android.support.annotation.NonNull;
@@ -13,6 +14,11 @@ import java.util.ArrayList;
 public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermListViewHolder> {
     private ArrayList<TermItem> mTermList;
     private OnItemClickListener mListener;
+
+    public TermListAdapter(ArrayList<TermItem> termList) {
+        mTermList = termList;
+
+    }
 
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -49,10 +55,7 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
         }
     }
 
-    public TermListAdapter(ArrayList<TermItem> termList) {
-        mTermList = termList;
 
-    }
 
 
 
@@ -69,8 +72,8 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
         TermItem currentItem = mTermList.get(position);
 
         holder.mImageView.setImageResource(currentItem.getmImageResource());
-        holder.mTextView1.setText(currentItem.getmText1());
-        holder.mTextView2.setText(currentItem.getmText2());
+        holder.mTextView1.setText(currentItem.getTermNumber());
+        holder.mTextView2.setText(currentItem.getTermDates());
     }
 
     @Override
@@ -78,3 +81,4 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
         return mTermList.size();
     }
 }
+
