@@ -1,6 +1,8 @@
 package com.mikeshehadeh.unitracker;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -12,15 +14,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class TermListActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class TermListActivity extends AppCompatActivity {
     private Button buttonRemove;
     private EditText editTextInsert;
     private EditText editTextRemove;
+    private Calendar selectedStartDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,24 +163,25 @@ public class TermListActivity extends AppCompatActivity {
 
     }
 
+
     public void addNewTerm() {
         int newTermNumber = getNextTermNumberFromDB();
-        String newTermStr;
-        String newTermStartDate;
-        String newTermEndDate;
         //the term table is not empty
         if (newTermNumber > 1 ){
-            newTermStr = Integer.toString(newTermNumber);
-            newTermStartDate = getNextTermStartDate(newTermNumber);
-            newTermEndDate = getNextTermEndDate(newTermStartDate);
-
+            addAdditionalTerm(newTermNumber);
         }
         //the term table is empty
         else{
-            newTermStr = "1";
-            newTermStartDate = "01-Mar-2017";
-            newTermEndDate = getNextTermEndDate(newTermStartDate);
+            // launch date picker, get input, parse as needed
+            addFirstTerm();
         }
+    }
+
+
+    private void addAdditionalTerm(int newTermNumber) {
+        String newTermStr = Integer.toString(newTermNumber);
+        String newTermStartDate = getNextTermStartDate(newTermNumber);
+        String newTermEndDate = getNextTermEndDate(newTermStartDate);
 
         ContentValues cv = new ContentValues();
         cv.put(DBTables.termTable.COLUMN_TERM_ID, newTermStr);
@@ -187,6 +190,43 @@ public class TermListActivity extends AppCompatActivity {
 
         dB.insert(DBTables.termTable.TABLE_NAME, null, cv);
         mAdapter.swapCursor(getAllItems());
+    }
+
+
+    private void addFirstTerm() {
+        final Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = 1;
+        DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String newTermStr = "1";
+                Calendar cal = Calendar.getInstance();
+                cal.set(year,month,1);
+                String newTermStartDate = parseCalToString(cal);
+                String newTermEndDate = getNextTermEndDate(newTermStartDate);
+
+                ContentValues cv = new ContentValues();
+                cv.put(DBTables.termTable.COLUMN_TERM_ID, newTermStr);
+                cv.put(DBTables.termTable.COLUMN_TERM_STARTDATE, newTermStartDate);
+                cv.put(DBTables.termTable.COLUMN_TERM_ENDDATE, newTermEndDate);
+
+                dB.insert(DBTables.termTable.TABLE_NAME, null, cv);
+                mAdapter.swapCursor(getAllItems());
+
+            }
+        };
+
+        DatePickerDialog dialog = new DatePickerDialog(this,
+                android.R.style.Theme_DeviceDefault, mDateSetListener, year, month, day);
+        dialog.show();
+        Context context = getApplicationContext();
+        CharSequence text = "Select Term Start Date.";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
     }
 
