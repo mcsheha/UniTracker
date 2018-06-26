@@ -3,6 +3,7 @@ package com.mikeshehadeh.unitracker;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -45,7 +46,7 @@ public class TermListActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         dB = dbHelper.getWritableDatabase();
 
-        createTermList();
+        //createTermList();
         buildRecyclerView();
         configureHomeButton();
 
@@ -74,7 +75,9 @@ public class TermListActivity extends AppCompatActivity {
 
             }
         }).attachToRecyclerView(mRecyclerView);
+
     }
+
 
     private void configureHomeButton() {
         FloatingActionButton homeButton = (FloatingActionButton) findViewById(R.id.btn_home);
@@ -104,11 +107,7 @@ public class TermListActivity extends AppCompatActivity {
     }
 
 
-/*
 
-    private String getNextTermDates() {
-    }
-*/
 
     private int getNextTermNumber() {
         //Get highest term already in mTermList and then add 1
@@ -124,10 +123,6 @@ public class TermListActivity extends AppCompatActivity {
     }
 
 
-
-    public void pullTermsFromDB() {
-
-    }
 
     public void createTermList(){
 
@@ -157,9 +152,25 @@ public class TermListActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new TermListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                int term = position +1;
+                showTermDetails(term);
+
                 //Put code here for what happens when an item is clicked
+/*                Context context = getApplicationContext();
+                CharSequence text = "Term " + position + " Clicked";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();*/
             }
         });
+
+    }
+
+    private void showTermDetails(int term) {
+        Intent i = new Intent(this, TermDetailActivity.class);
+        i.putExtra("term", term);
+        startActivity(i);
 
     }
 
@@ -223,7 +234,7 @@ public class TermListActivity extends AppCompatActivity {
         dialog.show();
         Context context = getApplicationContext();
         CharSequence text = "Select Term Start Date.";
-        int duration = Toast.LENGTH_SHORT;
+        int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
@@ -299,15 +310,7 @@ public class TermListActivity extends AppCompatActivity {
         }
         else return 1;
     }
-/*
 
-    public void addNewTerm() {
-        int termNumber = getNextTermNumber();
-        Calendar newTermStartDate = getNewTermStartDate(termNumber - 1);
-        mTermList.add(new TermItem(termNumber,newTermStartDate));
-        mAdapter.notifyItemInserted(mTermList.size());
-    }
-*/
 
     private Cursor getAllItems() {
         return dB.query(DBTables.termTable.TABLE_NAME,

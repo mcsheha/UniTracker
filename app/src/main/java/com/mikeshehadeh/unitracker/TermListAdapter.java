@@ -14,18 +14,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermListViewHolder> {
-    private ArrayList<TermItem> mTermList;
     private OnItemClickListener mListener;
     private Context mContext;
     private Cursor mCursor;
 
-/*
-
-    public TermListAdapter(ArrayList<TermItem> termList) {
-        mTermList = termList;
-
-    }
-*/
 
     public TermListAdapter (Context context, Cursor cursor){
         mContext = context;
