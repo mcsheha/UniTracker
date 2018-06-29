@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TermDetailActivity"
+    tools:context=".CourseDetailActivity"
     android:id="@+id/relativeLayout">
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/crse_dtl_banner"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,18 +18,39 @@
         app:srcCompat="@color/colorAccent" />
 
     <TextView
-        android:id="@+id/textView_term"
+        android:id="@+id/crse_dtl_textView_designator"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:gravity="center"
-        android:text="Term 0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="C100 - "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="@+id/crse_dtl_banner"
+        app:layout_constraintTop_toTopOf="@+id/crse_dtl_banner" />
+
+    <TextView
+        android:id="@+id/crse_dtl_name"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:text="Database Systems"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toEndOf="@+id/crse_dtl_textView_designator"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/crse_dtl_textView_cus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="3 CUs"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_banner" />
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_back"
+        android:id="@+id/crse_dtl_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -41,7 +62,7 @@
         app:srcCompat="@drawable/back_thin" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/button_edit_term"
+        android:id="@+id/crse_dtl_btn_edit_crse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -51,10 +72,10 @@
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/trash_thin" />
+        app:srcCompat="@drawable/edit_thin" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/crse_dtl_assmt_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -63,24 +84,24 @@
         android:background="@color/colorAccent"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:text="View Courses"
+        android:text="Assessments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_termStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_termStatus" />
 
     <TextView
-        android:id="@+id/textView_startDate"
+        android:id="@+id/crse_dtl_textView_start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Start Date:  1 Jan 1980"
+        android:layout_marginTop="8dp"
+        android:text="Start Date:  30 Jun 1980"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_term" />
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_cus" />
 
     <TextView
-        android:id="@+id/textView_endDate"
+        android:id="@+id/crse_dtl_textView_endDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -88,10 +109,10 @@
         android:text="End Date:  30 Jun 1980"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_startDate" />
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_start_date" />
 
     <TextView
-        android:id="@+id/textView_termStatus"
+        android:id="@+id/crse_dtl_textView_termStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -99,7 +120,7 @@
         android:text="Status:  Complete"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_endDate" />
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_endDate" />
 
 
 </android.support.constraint.ConstraintLayout>

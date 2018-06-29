@@ -241,6 +241,13 @@ public class TermListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        mAdapter.swapCursor(getAllItems());
+
+    }
+
     public void removeItem (long termID) {
         dB.delete(DBTables.termTable.TABLE_NAME,
                 DBTables.termTable.COLUMN_TERM_ID + "=" + termID, null);

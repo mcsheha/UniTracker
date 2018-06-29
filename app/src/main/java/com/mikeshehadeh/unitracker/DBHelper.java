@@ -7,7 +7,7 @@ import com.mikeshehadeh.unitracker.DBTables.*;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "unitracker.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,6 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_COURSE_TABLE = "CREATE TABLE " + courseTable.TABLE_NAME + " (" +
                 courseTable.COLUMN_COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                courseTable.COLUMN_COURSE_DESIGNATOR + " TEXT NOT NULL, " +
                 courseTable.COLUMN_COURSE_NAME + " TEXT NOT NULL, " +
                 courseTable.COLUMN_CU + " INT NOT NULL, " +
                 courseTable.COLUMN_TERM_ID + " INT, " +

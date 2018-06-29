@@ -26,6 +26,7 @@ public class DBTables {
     public static final class courseTable implements BaseColumns {
         public static final String TABLE_NAME = "course";
         public static final String COLUMN_COURSE_ID = "id";
+        public static final String COLUMN_COURSE_DESIGNATOR = "designator";
         public static final String COLUMN_COURSE_NAME = "name";
         public static final String COLUMN_CU = "cu";
         public static final String COLUMN_TERM_ID = "term_id";

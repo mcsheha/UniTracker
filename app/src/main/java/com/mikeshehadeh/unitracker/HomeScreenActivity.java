@@ -21,12 +21,34 @@ public class HomeScreenActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         mDatabase = dbHelper.getWritableDatabase();
 
-        configureTermButton();
+        configureTermsButton();
+        configureCoursesButton();
+        configureAdvancedButton();
 
 
     }
 
-    private void configureTermButton() {
+    private void configureAdvancedButton() {
+        Button advancedButton = (Button) findViewById(R.id.home_btn_advanced);
+        advancedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeScreenActivity.this, AdvancedActivity.class));
+            }
+        });
+    }
+
+    private void configureCoursesButton() {
+        Button courseButton = (Button) findViewById(R.id.btn_courses);
+        courseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeScreenActivity.this, CourseListActivity.class));
+            }
+        });
+    }
+
+    private void configureTermsButton() {
         Button termButton = (Button) findViewById(R.id.btn_terms);
         termButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,13 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermListViewHolder> {
+public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseListViewHolder> {
     private OnItemClickListener mListener;
     private Context mContext;
     private Cursor mCursor;
 
 
-    public TermListAdapter (Context context, Cursor cursor){
+    public CourseListAdapter (Context context, Cursor cursor){
         mContext = context;
         mCursor = cursor;
     }
@@ -32,16 +32,16 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
     }
 
 
-    public static class TermListViewHolder extends RecyclerView.ViewHolder {
+    public static class CourseListViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
         public TextView mTextView2;
 
-        public TermListViewHolder(View itemView, final OnItemClickListener listener) {
+        public CourseListViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.imageView);
-            mTextView1 = itemView.findViewById(R.id.textView);
-            mTextView2 = itemView.findViewById(R.id.textView2);
+            mImageView = itemView.findViewById(R.id.crs_imageView);
+            mTextView1 = itemView.findViewById(R.id.crs_textView);
+            mTextView2 = itemView.findViewById(R.id.crs_textView2);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,25 +60,24 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
 
     @NonNull
     @Override
-    public TermListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.term_item, parent, false);
-        TermListViewHolder tlvh = new TermListViewHolder(v, mListener);
-        return tlvh;
+    public CourseListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
+        CourseListViewHolder clvh = new CourseListViewHolder(v, mListener);
+        return clvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TermListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CourseListViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)) {
             return;
         }
-        String termID = "Term " + mCursor.getString(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
-        String termDates = mCursor.getString(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_STARTDATE)) + " - " +
-                mCursor.getString((mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ENDDATE)));
-        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
+        String courseID = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_DESIGNATOR));
+        String courseTitle = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_NAME));
+        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_ID));
 
         holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
-        holder.mTextView1.setText(termID);
-        holder.mTextView2.setText(termDates);
+        holder.mTextView1.setText(courseID);
+        holder.mTextView2.setText(courseTitle);
         holder.itemView.setTag(id);
     }
 

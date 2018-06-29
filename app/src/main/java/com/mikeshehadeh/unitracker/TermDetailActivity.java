@@ -1,10 +1,13 @@
 package com.mikeshehadeh.unitracker;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,7 +50,9 @@ public class TermDetailActivity extends AppCompatActivity {
 
 
         configureBackButton();
+        configureEditButton();
     }
+
 
     private void setTextViews() {
         tvStartDate = (TextView)findViewById(R.id.textView_startDate);
@@ -113,6 +118,43 @@ public class TermDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void configureEditButton() {
+        FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.button_edit_term);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showConfirmDialog();
+            }
+        });
+    }
+
+    private void showConfirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Term " + term +"?");
+        builder.setMessage("You are about to delete Term " + term + ". Do you really want to proceed?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dB.delete(DBTables.termTable.TABLE_NAME,
+                        DBTables.termTable.COLUMN_TERM_ID + "=" + term, null);
+                Toast.makeText(getApplicationContext(), "Term deleted!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Cancelled.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.show();
+    }
+
 
     private String parseCalToString(Calendar lastTermEndCal) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");

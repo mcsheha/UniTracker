@@ -27,8 +27,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TermListActivity" />
-        <activity android:name=".TermDetailActivity"></activity>
+        <activity
+            android:name=".TermListActivity"
+            android:label="UniTracker - Term List" />
+        <activity
+            android:name=".TermDetailActivity"
+            android:label="UniTracker - Term Details" />
+        <activity
+            android:name=".CourseListActivity"
+            android:label="UniTracker - Course List" />
+        <activity
+            android:name=".CourseDetailActivity"
+            android:label="UniTracker - Course Details" />
+        <activity android:name=".AdvancedActivity"></activity>
     </application>
 
 </manifest>

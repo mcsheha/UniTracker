@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/create_course_dialog_banner"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/create_course_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:padding="10dp"
+        android:text="Add New Course"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/create_course_dialog_edt_txt_designator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:hint="Course Designator - e.g. C188"
+        android:inputType="text|textCapCharacters|textNoSuggestions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_banner" />
+
+    <EditText
+        android:id="@+id/create_course_dialog_edt_txt_course_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:hint="Course Name - e.g. Database Applications"
+        android:inputType="text|textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_designator" />
+
+    <EditText
+        android:id="@+id/create_course_dialog_edt_txt_cus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:hint="CUs - e.g. 4"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_course_name" />
+
+    <Button
+        android:id="@+id/create_course_btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_cus" />
+
+    <Button
+        android:id="@+id/create_course_btn_add_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Add Course"
+        app:layout_constraintStart_toEndOf="@+id/create_course_btn_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_cus" />
+</android.support.constraint.ConstraintLayout>
