@@ -30,18 +30,17 @@
             android:id="@+id/mentor_textView"/>
 
         <TextView
+            android:id="@+id/mentor_textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line 2"
-            android:textSize="15sp"
             android:layout_below="@+id/mentor_textView"
-            android:layout_toEndOf="@+id/mentor_imageView"
             android:layout_marginStart="8dp"
-            android:id="@+id/crs_textView2"
-            />
+            android:layout_toEndOf="@+id/mentor_imageView"
+            android:text="Line 2"
+            android:textSize="15sp" />
 
         <Button
-            android:id="@+id/crs_btn_details"
+            android:id="@+id/mentor_btn_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

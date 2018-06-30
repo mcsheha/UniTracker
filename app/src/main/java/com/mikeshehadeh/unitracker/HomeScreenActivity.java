@@ -24,7 +24,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         configureTermsButton();
         configureCoursesButton();
         configureAdvancedButton();
-
+        configureMentorsButton();
 
     }
 
@@ -54,6 +54,17 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeScreenActivity.this, TermListActivity.class));
+            }
+        });
+
+    }
+
+    private void configureMentorsButton() {
+        Button termButton = (Button) findViewById(R.id.btn_mentors);
+        termButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeScreenActivity.this, MentorListActivity.class));
             }
         });
 
