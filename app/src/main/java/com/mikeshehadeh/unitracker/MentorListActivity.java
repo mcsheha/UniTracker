@@ -1,16 +1,21 @@
 package com.mikeshehadeh.unitracker;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MentorListActivity extends AppCompatActivity {
@@ -82,23 +87,15 @@ public class MentorListActivity extends AppCompatActivity {
                 RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(position);
                 //Put code here for what happens when an item is clicked
                 long tag = (long) viewHolder.itemView.getTag();
-                Context context = getApplicationContext();
-                CharSequence text = "Position " + tag + " Clicked";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
                 showMentorDetails(tag);
-
             }
         });
     }
 
     private void showMentorDetails(long tag) {
-        //Uncomment after creating MentorDetail screen
-        //Intent i = new Intent(this, MentorDetailActivity.class);
-        //i.putExtra("courseTag", tag);
-        //startActivity(i);
+        Intent i = new Intent(this, MentorDetailActivity.class);
+        i.putExtra("mentorTag", tag);
+        startActivity(i);
     }
 
     private void configureHomeButton() {
@@ -112,6 +109,88 @@ public class MentorListActivity extends AppCompatActivity {
     }
 
     private void addNewMentor() {
+        //Show dialog/form for adding a new mentor
+        //save user input, check if valid (Toast if not), add to db, swapCursor(getAllItems)
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View addMentorDialogView = factory.inflate(R.layout.dialog_create_mentor, null);
+        final AlertDialog createMentor = new AlertDialog.Builder(this).create();
+        createMentor.setView(addMentorDialogView);
+
+
+
+        //save new term button clicked
+        addMentorDialogView.findViewById(R.id.create_mentor_btn_add_mentor).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //check if input is valid, add the course to the db
+                EditText nameEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
+                EditText emailEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
+                EditText phoneEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_phone);
+
+                String name = nameEditText.getText().toString();
+                String email = emailEditText.getText().toString().toLowerCase();
+                String phone = phoneEditText.getText().toString();
+
+                if(checkInputValid(name, email, phone)) {
+                    //Toast input valid
+                    Context context = getApplicationContext();
+                    CharSequence text = "Inputs valid!";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                    ContentValues cv = new ContentValues();
+                    cv.put(DBTables.mentorTable.COLUMN_MENTOR_NAME, name);
+                    cv.put(DBTables.mentorTable.COLUMN_MENTOR_EMAIL, email);
+                    cv.put(DBTables.mentorTable.COLUMN_MENTOR_PHONE, phone);
+
+
+                    dB.insert(DBTables.mentorTable.TABLE_NAME, null, cv);
+                    mAdapter.swapCursor(getAllItems());
+                    createMentor.dismiss();
+                }
+            }
+        });
+
+        //cancel button clicked
+        addMentorDialogView.findViewById(R.id.create_mentor_btn_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createMentor.dismiss();
+            }
+        });
+
+
+        createMentor.show();
+
+
+    }
+
+
+    private boolean checkInputValid(String name, String email, String phone) {
+        boolean inputValid = true;
+        if(!email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.[a-zA-Z]{2,})$")){
+            inputValid = false;
+        }
+        if (name == null || name.trim().isEmpty()) {
+            inputValid = false;
+        }
+        if (phone == null || phone.trim().isEmpty()) {
+            inputValid = false;
+        }
+        if(!inputValid) {
+            //toast invalid inputs
+            Context context = getApplicationContext();
+            CharSequence text = "Inputs not valid!";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+
+        return inputValid;
+
     }
 
 

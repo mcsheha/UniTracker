@@ -1,9 +1,7 @@
 package com.mikeshehadeh.unitracker;
 
-import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -87,9 +85,9 @@ public class CourseListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //check if input is valid, add the course to the db
-                EditText designatorEditText = (EditText)addCourseDialogView.findViewById(R.id.create_course_dialog_edt_txt_designator);
-                EditText nameEditText = (EditText)addCourseDialogView.findViewById(R.id.create_course_dialog_edt_txt_course_name);
-                EditText cusEditText = (EditText)addCourseDialogView.findViewById(R.id.create_course_dialog_edt_txt_cus);
+                EditText designatorEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
+                EditText nameEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
+                EditText cusEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_phone);
 
                 String designator = designatorEditText.getText().toString();
                 String courseName = nameEditText.getText().toString();
@@ -115,7 +113,7 @@ public class CourseListActivity extends AppCompatActivity {
         });
 
         //cancel button clicked
-        addCourseDialogView.findViewById(R.id.create_course_btn_cancel).setOnClickListener(new View.OnClickListener() {
+        addCourseDialogView.findViewById(R.id.create_mentor_btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createCourse.dismiss();
@@ -130,11 +128,10 @@ public class CourseListActivity extends AppCompatActivity {
 
     private boolean checkInputValid(String designator, String courseName, int cus) {
         boolean inputValid = true;
-        String errorMsg = "Inputs not valid!";
-        if(designator == null || designator.isEmpty()) {
+        if(designator == null || designator.trim().isEmpty()) {
             inputValid = false;
         }
-        if (courseName == null || courseName.isEmpty()) {
+        if (courseName == null || courseName.trim().isEmpty()) {
             inputValid = false;
         }
         if (cus <= 0) {
@@ -143,7 +140,7 @@ public class CourseListActivity extends AppCompatActivity {
         if(!inputValid) {
             //toast invalid inputs
             Context context = getApplicationContext();
-            CharSequence text = errorMsg;
+            CharSequence text = "Inputs not valid!";
             int duration = Toast.LENGTH_LONG;
 
             Toast toast = Toast.makeText(context, text, duration);
@@ -179,12 +176,7 @@ public class CourseListActivity extends AppCompatActivity {
                 RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(position);
                 //Put code here for what happens when an item is clicked
                 long tag = (long) viewHolder.itemView.getTag();
-                Context context = getApplicationContext();
-                CharSequence text = "Position " + tag + " Clicked";
-                int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
                 showCourseDetails(tag);
 
             }

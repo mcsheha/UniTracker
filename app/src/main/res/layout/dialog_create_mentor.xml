@@ -15,11 +15,11 @@
         app:srcCompat="@color/colorAccent" />
 
     <TextView
-        android:id="@+id/create_course_dialog_title"
+        android:id="@+id/create_mentor_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:padding="10dp"
-        android:text="Add New Course"
+        android:text="Add New Mentor"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:hint="Course Designator - e.g. C188"
-        android:inputType="text|textCapCharacters|textNoSuggestions"
+        android:hint="Name - e.g. Micah Pappas"
+        android:inputType="text|textCapWords|textNoSuggestions"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_banner" />
 
@@ -43,8 +43,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
-        android:hint="Course Name - e.g. Database Applications"
-        android:inputType="text|textCapWords"
+        android:hint="Email - e.g. joyce@wgu.edu"
+        android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_name" />
 
@@ -55,8 +55,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
-        android:hint="CUs - e.g. 4"
-        android:inputType="number"
+        android:hint="Phone number - e.g. 555-555-1212"
+        android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_email" />
 
@@ -71,12 +71,24 @@
         app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_phone" />
 
     <Button
-        android:id="@+id/create_course_btn_add_course"
+        android:id="@+id/create_mentor_btn_add_mentor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Add Course"
+        android:text="Add Mentor"
         app:layout_constraintStart_toEndOf="@+id/create_mentor_btn_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_phone" />
+
+    <Button
+        android:id="@+id/create_mentor_btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:visibility="invisible"
+        android:text="Delete"
+        app:layout_constraintStart_toEndOf="@+id/create_mentor_btn_add_mentor"
         app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_phone" />
 </android.support.constraint.ConstraintLayout>

@@ -40,7 +40,8 @@
             android:name=".CourseDetailActivity"
             android:label="UniTracker - Course Details" />
         <activity android:name=".AdvancedActivity" />
-        <activity android:name=".MentorListActivity"></activity>
+        <activity android:name=".MentorListActivity" />
+        <activity android:name=".MentorDetailActivity"></activity>
     </application>
 
 </manifest>
