@@ -1,4 +1,3 @@
-
 package com.mikeshehadeh.unitracker;
 
 import android.content.Context;
@@ -11,37 +10,35 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.AlertListViewHolder>{
 
-public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseListViewHolder> {
-    private OnItemClickListener mListener;
+    private AlertListAdapter.OnItemClickListener mListener;
     private Context mContext;
     private Cursor mCursor;
 
-
-    public CourseListAdapter (Context context, Cursor cursor){
+    public AlertListAdapter (Context context, Cursor cursor){
         mContext = context;
         mCursor = cursor;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(AlertListAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
 
-
-    public static class CourseListViewHolder extends RecyclerView.ViewHolder {
+    public static class AlertListViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
         public TextView mTextView2;
 
-        public CourseListViewHolder(View itemView, final OnItemClickListener listener) {
+        public AlertListViewHolder(View itemView, final AlertListAdapter.OnItemClickListener listener) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.course_item_image_view);
-            mTextView1 = itemView.findViewById(R.id.course_item_text_view);
-            mTextView2 = itemView.findViewById(R.id.crs_textView2);
+            mImageView = itemView.findViewById(R.id.alert_imageView);
+            mTextView1 = itemView.findViewById(R.id.alert_textView);
+            mTextView2 = itemView.findViewById(R.id.assmt_textView2);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,24 +57,25 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @NonNull
     @Override
-    public CourseListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
-        CourseListViewHolder clvh = new CourseListViewHolder(v, mListener);
-        return clvh;
+    public AlertListAdapter.AlertListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.alert_item, parent, false);
+        AlertListAdapter.AlertListViewHolder alvh = new AlertListAdapter.AlertListViewHolder(v, mListener);
+        return alvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AlertListAdapter.AlertListViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)) {
             return;
         }
-        String courseID = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_DESIGNATOR));
-        String courseTitle = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_NAME));
-        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_ID));
+        String alertName = mCursor.getString(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_TYPE));
+        String alertDateTime = mCursor.getString(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_DATETIME));
+
+        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_ID));
 
         holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
-        holder.mTextView1.setText(courseID);
-        holder.mTextView2.setText(courseTitle);
+        holder.mTextView1.setText(alertName);
+        holder.mTextView2.setText(alertDateTime);
         holder.itemView.setTag(id);
     }
 
@@ -97,4 +95,24 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

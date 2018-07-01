@@ -1,12 +1,14 @@
 package com.mikeshehadeh.unitracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +35,23 @@ public class CourseDetailActivity extends AppCompatActivity {
         dB = dbHelper.getWritableDatabase();
 
         configureBackButton();
+        configureAssessmentsButton();
         getAllItems();
         setTextViews();
 
+    }
+
+    private void configureAssessmentsButton() {
+        Button assmtButton = (Button) findViewById(R.id.crse_dtl_assmt_button);
+        assmtButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CourseDetailActivity.this, AssessmentListActivity.class);
+                i.putExtra("courseID", courseID);
+                startActivity(i);
+
+            }
+        });
     }
 
     private void setTextViews() {
@@ -74,7 +90,8 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     private void getAllItems() {
         String whereClause = DBTables.courseTable.COLUMN_COURSE_ID + "= ?";
-                String[] whereArgs = new String[]{Long.toString(courseID)};
+        String[] whereArgs = new String[]{Long.toString(courseID)};
+
         Cursor c = dB.query(DBTables.courseTable.TABLE_NAME,
                 null,
                 whereClause,

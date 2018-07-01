@@ -16,31 +16,31 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="2dp"
-            android:id="@+id/course_item_image_view"/>
+            android:id="@+id/alert_imageView"/>
 
         <TextView
+            android:id="@+id/alert_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/course_item_image_view"
-            android:text="Line 1"
+            android:layout_toEndOf="@+id/alert_imageView"
+            android:text="Assessment Name"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:id="@+id/course_item_text_view"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/mentor_textView2"
+            android:id="@+id/assmt_textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/course_item_text_view"
+            android:layout_below="@+id/alert_textView"
             android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/course_item_image_view"
-            android:text="Line 2"
+            android:layout_toEndOf="@+id/alert_imageView"
+            android:text="Due Date: 14 May 2018"
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/mentor_btn_details"
+            android:id="@+id/assmt_btn_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

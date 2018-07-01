@@ -10,14 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MentorListAdapter extends RecyclerView.Adapter<MentorListAdapter.MentorListViewHolder> {
-    private MentorListAdapter.OnItemClickListener mListener;
+public class AssessmentListAdapter extends RecyclerView.Adapter<AssessmentListAdapter.AssessmentListViewHolder>{
+
+    private AssessmentListAdapter.OnItemClickListener mListener;
     private Context mContext;
     private Cursor mCursor;
 
-
-
-    public MentorListAdapter (Context context, Cursor cursor){
+    public AssessmentListAdapter (Context context, Cursor cursor){
         mContext = context;
         mCursor = cursor;
     }
@@ -26,20 +25,20 @@ public class MentorListAdapter extends RecyclerView.Adapter<MentorListAdapter.Me
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(MentorListAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(AssessmentListAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
 
-    public static class MentorListViewHolder extends RecyclerView.ViewHolder {
+    public static class AssessmentListViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
         public TextView mTextView2;
 
-        public MentorListViewHolder(View itemView, final OnItemClickListener listener) {
+        public AssessmentListViewHolder(View itemView, final AssessmentListAdapter.OnItemClickListener listener) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.course_item_image_view);
-            mTextView1 = itemView.findViewById(R.id.course_item_text_view);
-            mTextView2 = itemView.findViewById(R.id.mentor_textView2);
+            mImageView = itemView.findViewById(R.id.alert_imageView);
+            mTextView1 = itemView.findViewById(R.id.alert_textView);
+            mTextView2 = itemView.findViewById(R.id.assmt_textView2);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -58,26 +57,25 @@ public class MentorListAdapter extends RecyclerView.Adapter<MentorListAdapter.Me
 
     @NonNull
     @Override
-    public MentorListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mentor_item, parent, false);
-        MentorListViewHolder mlvh = new MentorListViewHolder(v, mListener);
-        return mlvh;
+    public AssessmentListAdapter.AssessmentListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.assessment_item, parent, false);
+        AssessmentListAdapter.AssessmentListViewHolder alvh = new AssessmentListAdapter.AssessmentListViewHolder(v, mListener);
+        return alvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MentorListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AssessmentListAdapter.AssessmentListViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)) {
             return;
         }
-        String mentorName = mCursor.getString(mCursor.getColumnIndex(DBTables.mentorTable.COLUMN_MENTOR_NAME));
-        String mentorEmail = mCursor.getString(mCursor.getColumnIndex(DBTables.mentorTable.COLUMN_MENTOR_EMAIL));
-        //String mentorID = mCursor.getString(mCursor.getColumnIndex(DBTables.Table.COLUMN_COURSE_DESIGNATOR));
-        //String courseTitle = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_NAME));
-        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.mentorTable.COLUMN_MENTOR_ID));
+        String assmtName = mCursor.getString(mCursor.getColumnIndex(DBTables.assessmentTable.COLUMN_ASSESSMENT_TITLE));
+        String assmtType = mCursor.getString(mCursor.getColumnIndex(DBTables.assessmentTable.COLUMN_ASSESSMENT_TYPE));
+
+        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.assessmentTable.COLUMN_ASSESSMENT_ID));
 
         holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
-        holder.mTextView1.setText(mentorName);
-        holder.mTextView2.setText(mentorEmail);
+        holder.mTextView1.setText(assmtName);
+        holder.mTextView2.setText(assmtType);
         holder.itemView.setTag(id);
     }
 
@@ -95,5 +93,4 @@ public class MentorListAdapter extends RecyclerView.Adapter<MentorListAdapter.Me
             notifyDataSetChanged();
         }
     }
-
 }
