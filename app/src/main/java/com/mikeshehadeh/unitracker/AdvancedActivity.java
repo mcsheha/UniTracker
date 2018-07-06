@@ -156,6 +156,14 @@ public class AdvancedActivity extends AppCompatActivity {
         courseCV7.put(DBTables.courseTable.COLUMN_CU, "4");
         courseCV8.put(DBTables.courseTable.COLUMN_CU, "4");
         courseCV9.put(DBTables.courseTable.COLUMN_CU, "4");
+        courseCV1.put(DBTables.courseTable.COLUMN_TERM_ID, "1");
+        courseCV2.put(DBTables.courseTable.COLUMN_TERM_ID, "1");
+        courseCV3.put(DBTables.courseTable.COLUMN_TERM_ID, "1");
+        courseCV4.put(DBTables.courseTable.COLUMN_TERM_ID, "2");
+        courseCV5.put(DBTables.courseTable.COLUMN_TERM_ID, "2");
+        courseCV6.put(DBTables.courseTable.COLUMN_TERM_ID, "2");
+        courseCV7.put(DBTables.courseTable.COLUMN_TERM_ID, "3");
+        courseCV8.put(DBTables.courseTable.COLUMN_TERM_ID, "3");
         dB.insert(DBTables.courseTable.TABLE_NAME, null, courseCV1);
         dB.insert(DBTables.courseTable.TABLE_NAME, null, courseCV2);
         dB.insert(DBTables.courseTable.TABLE_NAME, null, courseCV3);

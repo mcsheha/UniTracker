@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,112 +9,120 @@
     tools:context=".AssessmentDetailActivity"
     android:id="@+id/relativeLayout">
 
-
-    <ImageView
-        android:id="@+id/assmnt_dtl_banner"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/asmnt_dtl_textviewiew_course_designator"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="C188 - "
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="@+id/assmnt_dtl_banner"
-        app:layout_constraintTop_toTopOf="@+id/assmnt_dtl_banner" />
-
-    <TextView
-        android:id="@+id/asmnt_dtl_textviewiew_name"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:gravity="center"
-        android:text="Assessment 1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toEndOf="@+id/asmnt_dtl_textviewiew_course_designator"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/assmnt_dtl_textview_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Status:  Complete"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_banner" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/assmnt_dtl_btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/back_thin" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/assmnt_dtl_btn_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/edit_thin" />
-
-    <TextView
-        android:id="@+id/assmnt_dtl_textView_alet_heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Alerts: "
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_textview_status" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/assmnt_dtl_btn_add_alert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/assmnt_dtl_recycler_view_alerts"
-        app:layout_constraintEnd_toEndOf="@+id/assmnt_dtl_recycler_view_alerts"
-        app:srcCompat="@drawable/plus_thin" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/assmnt_dtl_recycler_view_alerts"
-        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/colorButtonNormal"
-        app:layout_constraintBottom_toTopOf="@+id/assmnt_dtl_btn_back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_textView_alet_heading">
+        app:layout_constraintTop_toTopOf="parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/assmnt_dtl_recycler_view_alerts"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/colorButtonNormal"
+            app:layout_constraintBottom_toTopOf="@+id/assmnt_dtl_btn_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_textView_alet_heading">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/assmnt_dtl_textview_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Status:  Complete"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_banner" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/assmnt_dtl_btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/edit_thin" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/assmnt_dtl_btn_add_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@+id/assmnt_dtl_recycler_view_alerts"
+            app:layout_constraintEnd_toEndOf="@+id/assmnt_dtl_recycler_view_alerts"
+            app:srcCompat="@drawable/plus_thin" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/assmnt_dtl_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/back_thin" />
+
+        <TextView
+            android:id="@+id/assmnt_dtl_textView_alet_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Alerts: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_textview_status" />
+
+        <ImageView
+            android:id="@+id/assmnt_dtl_banner"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/asmnt_dtl_textviewiew_name"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text="Assessment 1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@+id/asmnt_dtl_textviewiew_course_designator"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/asmnt_dtl_textviewiew_course_designator"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="C188 - "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="@+id/assmnt_dtl_banner"
+            app:layout_constraintTop_toTopOf="@+id/assmnt_dtl_banner" />
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

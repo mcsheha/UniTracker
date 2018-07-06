@@ -57,7 +57,7 @@ public class MentorDetailActivity extends AppCompatActivity {
 
                 EditText nameEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
                 EditText emailEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
-                EditText phoneEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_phone);
+                EditText phoneEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_date);
                 TextView dialogTitle = (TextView)editMentorDialogView.findViewById(R.id.create_mentor_dialog_title);
                 Button saveButton = (Button)editMentorDialogView.findViewById(R.id.create_mentor_btn_add_mentor);
                 Button deleteButton = (Button)editMentorDialogView.findViewById(R.id.create_mentor_btn_delete);
@@ -78,7 +78,7 @@ public class MentorDetailActivity extends AppCompatActivity {
                         //check if input is valid, add the course to the db
                         EditText nameEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
                         EditText emailEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
-                        EditText phoneEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_phone);
+                        EditText phoneEditText = (EditText)editMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_date);
 
                         String name = nameEditText.getText().toString();
                         String email = emailEditText.getText().toString().toLowerCase();

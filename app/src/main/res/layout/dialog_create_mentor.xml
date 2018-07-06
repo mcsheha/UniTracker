@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/create_mentor_dialog_banner"
+        android:id="@+id/create_assmnt_alert_dialog_banner"
         android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
         android:hint="Name - e.g. Micah Pappas"
         android:inputType="text|textCapWords|textNoSuggestions"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_banner" />
+        app:layout_constraintTop_toBottomOf="@+id/create_assmnt_alert_dialog_banner" />
 
     <EditText
         android:id="@+id/create_mentor_dialog_edt_txt_email"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_name" />
 
     <EditText
-        android:id="@+id/create_mentor_dialog_edt_txt_phone"
+        android:id="@+id/create_mentor_dialog_edt_txt_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,7 +68,7 @@
         android:layout_marginTop="24dp"
         android:text="Cancel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_date" />
 
     <Button
         android:id="@+id/create_mentor_btn_add_mentor"
@@ -78,7 +78,7 @@
         android:layout_marginTop="24dp"
         android:text="Add Mentor"
         app:layout_constraintStart_toEndOf="@+id/create_mentor_btn_cancel"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_date" />
 
     <Button
         android:id="@+id/create_mentor_btn_delete"
@@ -90,5 +90,5 @@
         android:visibility="invisible"
         android:text="Delete"
         app:layout_constraintStart_toEndOf="@+id/create_mentor_btn_add_mentor"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_date" />
 </android.support.constraint.ConstraintLayout>

@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -125,7 +124,7 @@ public class MentorListActivity extends AppCompatActivity {
                 //check if input is valid, add the course to the db
                 EditText nameEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
                 EditText emailEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
-                EditText phoneEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_phone);
+                EditText phoneEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_date);
 
                 String name = nameEditText.getText().toString();
                 String email = emailEditText.getText().toString().toLowerCase();
@@ -153,6 +152,7 @@ public class MentorListActivity extends AppCompatActivity {
             }
         });
 
+
         //cancel button clicked
         addMentorDialogView.findViewById(R.id.create_mentor_btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +166,7 @@ public class MentorListActivity extends AppCompatActivity {
 
 
     }
+
 
 
     private boolean checkInputValid(String name, String email, String phone) {

@@ -38,7 +38,7 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
             super(itemView);
             mImageView = itemView.findViewById(R.id.alert_imageView);
             mTextView1 = itemView.findViewById(R.id.alert_textView);
-            mTextView2 = itemView.findViewById(R.id.assmt_textView2);
+            mTextView2 = itemView.findViewById(R.id.alert_textView2);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,7 +73,7 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
 
         long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_ID));
 
-        holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
+        holder.mImageView.setImageResource(R.drawable.bell);
         holder.mTextView1.setText(alertName);
         holder.mTextView2.setText(alertDateTime);
         holder.itemView.setTag(id);

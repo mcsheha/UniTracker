@@ -87,7 +87,7 @@ public class CourseListActivity extends AppCompatActivity {
                 //check if input is valid, add the course to the db
                 EditText designatorEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
                 EditText nameEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
-                EditText cusEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_phone);
+                EditText cusEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_date);
 
                 String designator = designatorEditText.getText().toString();
                 String courseName = nameEditText.getText().toString();
