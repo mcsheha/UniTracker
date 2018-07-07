@@ -73,7 +73,7 @@ public class AssessmentListAdapter extends RecyclerView.Adapter<AssessmentListAd
 
         long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.assessmentTable.COLUMN_ASSESSMENT_ID));
 
-        holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
+        holder.mImageView.setImageResource(R.drawable.assessment);
         holder.mTextView1.setText(assmtName);
         holder.mTextView2.setText(assmtType);
         holder.itemView.setTag(id);

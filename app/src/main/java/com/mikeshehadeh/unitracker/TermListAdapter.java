@@ -76,7 +76,7 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
                 mCursor.getString((mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ENDDATE)));
         long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
 
-        holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
+        holder.mImageView.setImageResource(R.drawable.cap);
         holder.mTextView1.setText(termID);
         holder.mTextView2.setText(termDates);
         holder.itemView.setTag(id);

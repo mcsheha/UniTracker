@@ -1,4 +1,3 @@
-
 package com.mikeshehadeh.unitracker;
 
 import android.content.Context;
@@ -11,14 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder>{
 
-public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseListViewHolder> {
-    private OnItemClickListener mListener;
+    private NoteListAdapter.OnItemClickListener mListener;
     private Context mContext;
     private Cursor mCursor;
 
-
-    public CourseListAdapter (Context context, Cursor cursor){
+    public NoteListAdapter (Context context, Cursor cursor){
         mContext = context;
         mCursor = cursor;
     }
@@ -27,21 +25,18 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(NoteListAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
 
-
-    public static class CourseListViewHolder extends RecyclerView.ViewHolder {
+    public static class NoteListViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
-        public TextView mTextView2;
 
-        public CourseListViewHolder(View itemView, final OnItemClickListener listener) {
+        public NoteListViewHolder(View itemView, final NoteListAdapter.OnItemClickListener listener) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.course_item_image_view);
-            mTextView1 = itemView.findViewById(R.id.course_item_text_view);
-            mTextView2 = itemView.findViewById(R.id.crs_textView2);
+            mImageView = itemView.findViewById(R.id.note_imageView);
+            mTextView1 = itemView.findViewById(R.id.note_textView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,27 +55,26 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @NonNull
     @Override
-    public CourseListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
-        CourseListViewHolder clvh = new CourseListViewHolder(v, mListener);
-        return clvh;
+    public NoteListAdapter.NoteListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item, parent, false);
+        NoteListAdapter.NoteListViewHolder alvh = new NoteListAdapter.NoteListViewHolder(v, mListener);
+        return alvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NoteListAdapter.NoteListViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)) {
             return;
         }
-        String courseID = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_DESIGNATOR));
-        String courseTitle = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_NAME));
-        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_ID));
 
-        holder.mImageView.setImageResource(R.drawable.notebook);
-        holder.mTextView1.setText(courseID);
-        holder.mTextView2.setText(courseTitle);
+        String noteText = mCursor.getString(mCursor.getColumnIndex(DBTables.noteTable.COLUMN_NOTE_TEXT));
+
+        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.noteTable.COLUMN_NOTE_ID));
+
+        holder.mImageView.setImageResource(R.drawable.note);
+        holder.mTextView1.setText(noteText);
         holder.itemView.setTag(id);
     }
-
 
     @Override
     public int getItemCount() {
@@ -97,4 +91,3 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         }
     }
 }
-

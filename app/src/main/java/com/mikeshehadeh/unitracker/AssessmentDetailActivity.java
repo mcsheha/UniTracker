@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class AssessmentDetailActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private AlertListAdapter mAdapter;
     private FloatingActionButton buttonAddAlert;
+    private String courseID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class AssessmentDetailActivity extends AppCompatActivity {
         dB = dbHelper.getWritableDatabase();
 
         configureBackButton();
-        configureEditAsmntButton();
+        configureEditAssmtButton();
         configureAddAlertButton();
         getAllItems();
         setTextViews();
@@ -197,7 +200,7 @@ public class AssessmentDetailActivity extends AppCompatActivity {
         c.moveToFirst();
 
         assmntName = c.getString(c.getColumnIndex(DBTables.assessmentTable.COLUMN_ASSESSMENT_TITLE));
-        String courseID = c.getString(c.getColumnIndex(DBTables.assessmentTable.COLUMN_COURSE_ID));
+        courseID = c.getString(c.getColumnIndex(DBTables.assessmentTable.COLUMN_COURSE_ID));
         assmntStatus = c.getString(c.getColumnIndex(DBTables.assessmentTable.COLUMN_ASSESSMENT_TYPE));
 
         //Get CourseDesignator from ID
@@ -217,7 +220,61 @@ public class AssessmentDetailActivity extends AppCompatActivity {
 
     }
 
-    private void configureEditAsmntButton() {
+    private void configureEditAssmtButton() {
+        FloatingActionButton editAssmtButton = (FloatingActionButton) findViewById(R.id.assmnt_dtl_btn_edit);
+        editAssmtButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater factory = LayoutInflater.from(AssessmentDetailActivity.this);
+                final View editAssmtDialogView = factory.inflate(R.layout.dialog_add_assessment, null);
+                final AlertDialog editAssmt = new AlertDialog.Builder(AssessmentDetailActivity.this).create();
+                editAssmt.setView(editAssmtDialogView);
+
+
+
+
+                editAssmtDialogView.findViewById(R.id.dialog_add_assmt_btn_save).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //check if input is valid, add the course to the db
+                        EditText assmntNameEditText = (EditText) editAssmtDialogView.findViewById(R.id.dialog_add_assmt_edit_text_name);
+                        RadioGroup radioGroup = (RadioGroup) editAssmtDialogView.findViewById(R.id.dialog_add_assmt_radio_btn_group);
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+                        RadioButton selectedButton = (RadioButton) editAssmtDialogView.findViewById(selectedId);
+
+                        String assmtType = selectedButton.getText().toString();
+                        String assmtName = assmntNameEditText.getText().toString();
+
+                        String whereClause = DBTables.assessmentTable.COLUMN_ASSESSMENT_ID + "=?";
+                        String[] whereArgs = new String[]{courseID};
+
+                        ContentValues cv = new ContentValues();
+                        cv.put(DBTables.assessmentTable.COLUMN_ASSESSMENT_ID, assmntId);
+                        cv.put(DBTables.assessmentTable.COLUMN_COURSE_ID, courseID);
+                        cv.put(DBTables.assessmentTable.COLUMN_ASSESSMENT_TYPE, assmtType);
+                        cv.put(DBTables.assessmentTable.COLUMN_ASSESSMENT_TITLE, assmtName);
+
+                        dB.update(DBTables.assessmentTable.TABLE_NAME, cv, whereClause, whereArgs);
+                        editAssmt.dismiss();
+                        getAllItems();
+                        setTextViews();
+                        buildRecyclerView();
+                    }
+                });
+
+
+                editAssmtDialogView.findViewById(R.id.dialog_add_assmt_btn_cancel).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editAssmt.dismiss();
+                    }
+                });
+
+                editAssmt.show();
+            }
+        });
+
+
 
     }
 

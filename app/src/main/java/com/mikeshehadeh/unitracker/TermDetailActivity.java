@@ -3,6 +3,7 @@ package com.mikeshehadeh.unitracker;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -88,6 +89,21 @@ public class TermDetailActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(mRecyclerView);
 
+        mAdapter.setOnItemClickListener(new CoursesInTermAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(position);
+                //Put code here for what happens when an item is clicked
+                long tag = (long) viewHolder.itemView.getTag();
+                showCourseDetails(tag);
+            }
+        });
+    }
+
+    private void showCourseDetails(long tag) {
+        Intent i = new Intent(this, CourseDetailActivity.class);
+        i.putExtra("courseTag", tag);
+        startActivity(i);
     }
 
     private void removeItem(long tag) {
@@ -101,6 +117,8 @@ public class TermDetailActivity extends AppCompatActivity {
                 cv,
                 whereClause,
                 whereArgs);
+        mAdapter.swapCursor(getAssignedCrses());
+
 
     }
 
@@ -280,7 +298,7 @@ public class TermDetailActivity extends AppCompatActivity {
         final AlertDialog addCrseToTerm = new AlertDialog.Builder(this).create();
         addCrseToTerm.setView(addCrseToTermDialogView);
 
-        Spinner spinner = (Spinner) addCrseToTermDialogView.findViewById(R.id.dialog_crse_lst_dropdown_spinner);
+        final Spinner spinner = (Spinner) addCrseToTermDialogView.findViewById(R.id.dialog_crse_lst_dropdown_spinner);
         String[] spinnerItems = getAllCourseNames();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -291,34 +309,22 @@ public class TermDetailActivity extends AppCompatActivity {
         addCrseToTermDialogView.findViewById(R.id.dialog_crse_lst_dropdown_btn_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*                //check if input is valid, add the course to the db
-                EditText nameEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
-                EditText emailEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
-                EditText phoneEditText = (EditText)addMentorDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_date);
+                String spinnerSelection = spinner.getSelectedItem().toString();
+                String designatorToAdd = spinnerSelection.substring(0, spinnerSelection.indexOf(" "));
 
-                String name = nameEditText.getText().toString();
-                String email = emailEditText.getText().toString().toLowerCase();
-                String phone = phoneEditText.getText().toString();
+                String whereClause = DBTables.courseTable.COLUMN_COURSE_DESIGNATOR + "= ?";
+                String[] whereArgs = new String[]{designatorToAdd};
+                ContentValues cv = new ContentValues();
+                cv.put(DBTables.courseTable.COLUMN_TERM_ID, term);
 
-                if(checkInputValid(name, email, phone)) {
-                    //Toast input valid
-                    Context context = getApplicationContext();
-                    CharSequence text = "Inputs valid!";
-                    int duration = Toast.LENGTH_LONG;
+                dB.update(DBTables.courseTable.TABLE_NAME,
+                        cv,
+                        whereClause,
+                        whereArgs);
+                mAdapter.swapCursor(getAssignedCrses());
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                addCrseToTerm.dismiss();
 
-                    ContentValues cv = new ContentValues();
-                    cv.put(DBTables.mentorTable.COLUMN_MENTOR_NAME, name);
-                    cv.put(DBTables.mentorTable.COLUMN_MENTOR_EMAIL, email);
-                    cv.put(DBTables.mentorTable.COLUMN_MENTOR_PHONE, phone);
-
-
-                    dB.insert(DBTables.mentorTable.TABLE_NAME, null, cv);
-                    mAdapter.swapCursor(getAllItems());
-                    addCrseToTerm.dismiss();
-                }*/
             }
         });
 

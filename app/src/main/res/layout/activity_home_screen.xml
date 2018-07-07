@@ -23,30 +23,26 @@
 
     <Button
         android:id="@+id/btn_courses"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:text="Courses"
         app:layout_constraintBottom_toTopOf="@+id/btn_mentors"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_terms"
+        app:layout_constraintStart_toStartOf="@+id/btn_terms"
         app:layout_constraintTop_toBottomOf="@+id/btn_terms" />
 
     <Button
         android:id="@+id/btn_mentors"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:text="Mentors"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_courses"
+        app:layout_constraintStart_toStartOf="@+id/btn_courses"
         app:layout_constraintTop_toBottomOf="@+id/btn_courses" />
 
     <ImageView

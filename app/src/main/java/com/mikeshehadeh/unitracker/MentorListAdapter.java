@@ -75,7 +75,7 @@ public class MentorListAdapter extends RecyclerView.Adapter<MentorListAdapter.Me
         //String courseTitle = mCursor.getString(mCursor.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_NAME));
         long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.mentorTable.COLUMN_MENTOR_ID));
 
-        holder.mImageView.setImageResource(R.drawable.wgu_logo_cropped);
+        holder.mImageView.setImageResource(R.drawable.person);
         holder.mTextView1.setText(mentorName);
         holder.mTextView2.setText(mentorEmail);
         holder.itemView.setTag(id);

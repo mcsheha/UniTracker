@@ -75,21 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/edit_thin" />
 
-    <Button
-        android:id="@+id/crse_dtl_assmt_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorAccent"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp"
-        android:text="Assessments"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_termStatus" />
-
     <TextView
         android:id="@+id/crse_dtl_textView_start_date"
         android:layout_width="wrap_content"
@@ -122,6 +107,34 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_endDate" />
+
+    <Button
+        android:id="@+id/crse_dtl_assmt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/colorAccent"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:text="Assessments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_textView_termStatus" />
+
+    <Button
+        android:id="@+id/crse_dtl_notes_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorAccent"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:text="Notes"
+        app:layout_constraintEnd_toEndOf="@+id/crse_dtl_assmt_button"
+        app:layout_constraintStart_toStartOf="@+id/crse_dtl_assmt_button"
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_assmt_button" />
 
 
 </android.support.constraint.ConstraintLayout>

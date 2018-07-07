@@ -36,9 +36,23 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         configureBackButton();
         configureAssessmentsButton();
+        configureNotesButton();
         getAllItems();
         setTextViews();
 
+    }
+
+    private void configureNotesButton() {
+        Button assmtButton = (Button) findViewById(R.id.crse_dtl_notes_button);
+        assmtButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CourseDetailActivity.this, NoteListActivity.class);
+                i.putExtra("courseID", courseID);
+                startActivity(i);
+
+            }
+        });
     }
 
     private void configureAssessmentsButton() {
