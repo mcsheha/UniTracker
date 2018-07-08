@@ -1,6 +1,7 @@
 package com.mikeshehadeh.unitracker;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -19,6 +20,8 @@ public class NoteDetailActivity extends AppCompatActivity {
     private String courseId;
     private String courseDesignator;
     private boolean isNewNewNote;
+    String subject;
+    String body;
 
 
     @Override
@@ -48,7 +51,31 @@ public class NoteDetailActivity extends AppCompatActivity {
         configureSaveButton();
 
         setTextViews();
+        configureShareButton();
+
         //checkIsNewNote();
+
+    }
+
+    private void configureShareButton() {
+
+
+        FloatingActionButton backButton = (FloatingActionButton) findViewById(R.id.note_dtl_btn_email);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText mNoteText = (EditText)findViewById(R.id.note_detail_note_text);
+                body = mNoteText.getText().toString();
+
+                subject = "Note for " + courseDesignator;
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(shareIntent, "Share Via:"));
+
+            }
+        });
 
     }
 
@@ -145,34 +172,40 @@ public class NoteDetailActivity extends AppCompatActivity {
         FloatingActionButton backButton = (FloatingActionButton) findViewById(R.id.note_dtl_btn_save);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //update the DB noteTable, noteText field with new note text.
-                //get text from the edit text, save as string and update the notetext column
-                EditText mNoteText = (EditText)(findViewById(R.id.note_detail_note_text));
-
-                String noteText = mNoteText.getText().toString();
-
-                if(!isNewNewNote) {
-                    String whereClause = DBTables.noteTable.COLUMN_NOTE_ID + "= ?";
-                    String[] whereArgs = new String[]{Long.toString(noteId)};
-
-                    ContentValues cv = new ContentValues();
-                    cv.put(DBTables.noteTable.COLUMN_NOTE_TEXT, noteText);
-                    cv.put(DBTables.noteTable.COLUMN_COURSE_ID, courseId);
-
-                    dB.update(DBTables.noteTable.TABLE_NAME,
-                            cv,
-                            whereClause,
-                            whereArgs);
-                }else{
-                    ContentValues cv = new ContentValues();
-                    cv.put(DBTables.noteTable.COLUMN_NOTE_ID, noteId);
-                    cv.put(DBTables.noteTable.COLUMN_COURSE_ID, courseId);
-                    cv.put(DBTables.noteTable.COLUMN_NOTE_TEXT, noteText);
-                    dB.insert(DBTables.noteTable.TABLE_NAME, null, cv);
-                }
+            public void onClick(View v) {handleSave();
                 finish();
             }
         });
     }
+
+    private void handleSave() {
+        //update the DB noteTable, noteText field with new note text.
+        //get text from the edit text, save as string and update the notetext column
+        EditText mNoteText = (EditText)(findViewById(R.id.note_detail_note_text));
+
+        String noteText = mNoteText.getText().toString();
+
+        if(!isNewNewNote) {
+            String whereClause = DBTables.noteTable.COLUMN_NOTE_ID + "= ?";
+            String[] whereArgs = new String[]{Long.toString(noteId)};
+
+            ContentValues cv = new ContentValues();
+            cv.put(DBTables.noteTable.COLUMN_NOTE_TEXT, noteText);
+            cv.put(DBTables.noteTable.COLUMN_COURSE_ID, courseId);
+
+            dB.update(DBTables.noteTable.TABLE_NAME,
+                    cv,
+                    whereClause,
+                    whereArgs);
+        }else{
+            ContentValues cv = new ContentValues();
+            cv.put(DBTables.noteTable.COLUMN_NOTE_ID, noteId);
+            cv.put(DBTables.noteTable.COLUMN_COURSE_ID, courseId);
+            cv.put(DBTables.noteTable.COLUMN_NOTE_TEXT, noteText);
+            dB.insert(DBTables.noteTable.TABLE_NAME, null, cv);
+        }
+
+    }
+
+
 }

@@ -62,6 +62,20 @@
         app:srcCompat="@drawable/back_thin" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/note_dtl_btn_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/note_dtl_btn_save"
+        app:layout_constraintStart_toEndOf="@+id/note_dtl_btn_back"
+        app:srcCompat="@drawable/mail" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/note_dtl_btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

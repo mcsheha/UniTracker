@@ -45,36 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="3 CUs"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_banner" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/crse_dtl_btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/back_thin" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/crse_dtl_btn_edit_crse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/edit_thin" />
+        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_name" />
 
     <TextView
         android:id="@+id/crse_dtl_textView_start_date"
@@ -149,6 +124,31 @@
         app:layout_constraintEnd_toEndOf="@+id/crse_dtl_notes_button"
         app:layout_constraintStart_toStartOf="@+id/crse_dtl_notes_button"
         app:layout_constraintTop_toBottomOf="@+id/crse_dtl_notes_button" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/crse_dtl_btn_edit_crse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/edit_thin" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/crse_dtl_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/back_thin" />
 
 
 </android.support.constraint.ConstraintLayout>
