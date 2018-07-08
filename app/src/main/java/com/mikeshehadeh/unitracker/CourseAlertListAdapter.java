@@ -1,0 +1,118 @@
+package com.mikeshehadeh.unitracker;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class CourseAlertListAdapter extends RecyclerView.Adapter<CourseAlertListAdapter.CourseAlertListViewHolder>{
+
+    private CourseAlertListAdapter.OnItemClickListener mListener;
+    private Context mContext;
+    private Cursor mCursor;
+
+    public CourseAlertListAdapter (Context context, Cursor cursor){
+        mContext = context;
+        mCursor = cursor;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(CourseAlertListAdapter.OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    public static class CourseAlertListViewHolder extends RecyclerView.ViewHolder {
+        public ImageView mImageView;
+        public TextView mTextView1;
+        public TextView mTextView2;
+
+        public CourseAlertListViewHolder(View itemView, final CourseAlertListAdapter.OnItemClickListener listener) {
+            super(itemView);
+            mImageView = itemView.findViewById(R.id.course_alert_imageView);
+            mTextView1 = itemView.findViewById(R.id.course_alert_type);
+            mTextView2 = itemView.findViewById(R.id.course_alert_date);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+
+                }
+            });
+
+        }
+    }
+
+    @NonNull
+    @Override
+    public CourseAlertListAdapter.CourseAlertListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_alert_item, parent, false);
+        CourseAlertListAdapter.CourseAlertListViewHolder alvh = new CourseAlertListAdapter.CourseAlertListViewHolder(v, mListener);
+        return alvh;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CourseAlertListAdapter.CourseAlertListViewHolder holder, int position) {
+        if (!mCursor.moveToPosition(position)) {
+            return;
+        }
+        String alertName = mCursor.getString(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_TYPE));
+        String alertDateTime = mCursor.getString(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_DATETIME));
+
+        long id = mCursor.getLong(mCursor.getColumnIndex(DBTables.alertTable.COLUMN_ALERT_ID));
+
+        holder.mImageView.setImageResource(R.drawable.bell);
+        holder.mTextView1.setText(alertName);
+        holder.mTextView2.setText(alertDateTime);
+        holder.itemView.setTag(id);
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return mCursor.getCount();
+    }
+
+    public void swapCursor(Cursor newCursor) {
+        if (mCursor != null) {
+            mCursor.close();
+        }
+        mCursor = newCursor;
+        if (newCursor != null) {
+            notifyDataSetChanged();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -70,6 +70,10 @@ public class MentorListActivity extends AppCompatActivity {
 
 
     private void removeItem(long tag) {
+        String whereClause = DBTables.mentorTable.COLUMN_MENTOR_ID + "=?";
+        String[] whereArgs = new String[]{Long.toString(tag)};
+        dB.delete(DBTables.mentorTable.TABLE_NAME, whereClause, whereArgs);
+        mAdapter.swapCursor(getAllItems());
     }
 
     private void buildRecyclerView() {

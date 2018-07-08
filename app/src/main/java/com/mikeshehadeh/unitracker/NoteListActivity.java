@@ -32,7 +32,6 @@ public class NoteListActivity extends AppCompatActivity {
 
         buildRecyclerView();
         configureHomeButton();
-        configureAddNoteButton();
 
         buttonAddNote = findViewById(R.id.button_note_list_add);
         buttonAddNote.setOnClickListener(new View.OnClickListener(){
@@ -61,9 +60,6 @@ public class NoteListActivity extends AppCompatActivity {
 
     }
 
-    private void configureAddNoteButton() {
-
-    }
 
     @Override
     public void onResume(){

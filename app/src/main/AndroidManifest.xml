@@ -54,10 +54,15 @@
             android:name=".AssessmentDetailActivity"
             android:label="UniTracker - Assessment Details" />
         <!-- <activity android:name=".AlertListActivity"></activity> -->
-        <activity android:name=".NoteListActivity"
-            android:label="UniTracker - Notes List"/>
-        <activity android:name=".NoteDetailActivity"
-            android:label="UniTracker - Note Details"></activity>
+        <activity
+            android:name=".NoteListActivity"
+            android:label="UniTracker - Notes List" />
+        <activity
+            android:name=".NoteDetailActivity"
+            android:label="UniTracker - Note Details" />
+        <activity
+            android:name=".CourseAlertListActivity"
+            android:label="UniTracker - Course Alerts" />
     </application>
 
 </manifest>
