@@ -63,6 +63,8 @@
         <activity
             android:name=".CourseAlertListActivity"
             android:label="UniTracker - Course Alerts" />
+        <activity android:name=".CourseMentorActivity" />
+        <activity android:name=".CourseMentorListActivity"></activity>
     </application>
 
 </manifest>

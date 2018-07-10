@@ -2,11 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/create_assmnt_alert_dialog_banner"
+        android:id="@+id/create_course_alert_dialog_banner"
         android:layout_width="0dp"
         android:layout_height="64dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/create_course_dialog_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="64dp"
         android:padding="10dp"
         android:text="Add New Course"
@@ -26,57 +26,68 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/create_mentor_dialog_edt_txt_name"
-        android:layout_width="match_parent"
+        android:id="@+id/create_course_dialog_edt_txt_designator"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:hint="Course Designator - e.g. C188"
         android:inputType="text|textCapCharacters|textNoSuggestions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_assmnt_alert_dialog_banner" />
+        app:layout_constraintTop_toBottomOf="@+id/create_course_alert_dialog_banner" />
 
     <EditText
-        android:id="@+id/create_mentor_dialog_edt_txt_email"
-        android:layout_width="match_parent"
+        android:id="@+id/create_course_dialog_edt_txt_course_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif"
         android:hint="Course Name - e.g. Database Applications"
         android:inputType="text|textCapWords"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_name" />
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_designator" />
 
     <EditText
-        android:id="@+id/create_mentor_dialog_edt_txt_date"
-        android:layout_width="match_parent"
+        android:id="@+id/create_course_dialog_edt_txt_cus"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:hint="CUs - e.g. 4"
         android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_course_name" />
 
     <Button
-        android:id="@+id/create_mentor_btn_cancel"
+        android:id="@+id/create_course_btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_date" />
+        app:layout_constraintTop_toBottomOf="@+id/create_course_dialog_edt_txt_cus" />
 
     <Button
         android:id="@+id/create_course_btn_add_course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:text="Add Course"
-        app:layout_constraintStart_toEndOf="@+id/create_mentor_btn_cancel"
-        app:layout_constraintTop_toBottomOf="@+id/create_mentor_dialog_edt_txt_date" />
+        app:layout_constraintBottom_toBottomOf="@+id/create_course_btn_cancel"
+        app:layout_constraintStart_toEndOf="@+id/create_course_btn_cancel"
+        app:layout_constraintTop_toTopOf="@+id/create_course_btn_cancel" />
 </android.support.constraint.ConstraintLayout>

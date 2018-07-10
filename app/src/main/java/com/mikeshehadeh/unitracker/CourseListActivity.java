@@ -75,6 +75,7 @@ public class CourseListActivity extends AppCompatActivity {
     }
 
     private void addNewCourse() {
+        String[] mentorList = getMentorList();
         LayoutInflater factory = LayoutInflater.from(this);
         final View addCourseDialogView = factory.inflate(R.layout.dialog_create_course, null);
         final AlertDialog createCourse = new AlertDialog.Builder(this).create();
@@ -85,9 +86,9 @@ public class CourseListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //check if input is valid, add the course to the db
-                EditText designatorEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_name);
-                EditText nameEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_email);
-                EditText cusEditText = (EditText)addCourseDialogView.findViewById(R.id.create_mentor_dialog_edt_txt_date);
+                EditText designatorEditText = (EditText)addCourseDialogView.findViewById(R.id.create_course_dialog_edt_txt_designator);
+                EditText nameEditText = (EditText)addCourseDialogView.findViewById(R.id.create_course_dialog_edt_txt_course_name);
+                EditText cusEditText = (EditText)addCourseDialogView.findViewById(R.id.create_course_dialog_edt_txt_cus);
 
                 String designator = designatorEditText.getText().toString();
                 String courseName = nameEditText.getText().toString();
@@ -113,7 +114,7 @@ public class CourseListActivity extends AppCompatActivity {
         });
 
         //cancel button clicked
-        addCourseDialogView.findViewById(R.id.create_mentor_btn_cancel).setOnClickListener(new View.OnClickListener() {
+        addCourseDialogView.findViewById(R.id.create_course_btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createCourse.dismiss();
@@ -123,6 +124,10 @@ public class CourseListActivity extends AppCompatActivity {
 
         createCourse.show();
 
+    }
+
+    private String[] getMentorList() {
+        return new String[0];
     }
 
 
