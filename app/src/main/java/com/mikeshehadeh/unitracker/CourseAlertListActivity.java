@@ -54,7 +54,8 @@ public class CourseAlertListActivity extends AppCompatActivity {
 
         buildRecyclerView();
         configureBackButton();
-        setTitle();
+        String titleString = courseDesignator + "Alerts";
+        setTitle(titleString);
 
         buttonAddCourseAlert = findViewById(R.id.course_alerts_btn_add_alert);
         buttonAddCourseAlert.setOnClickListener(new View.OnClickListener(){
@@ -80,12 +81,6 @@ public class CourseAlertListActivity extends AppCompatActivity {
 
     }
 
-    private void setTitle() {
-        TextView tvTitle = (TextView)findViewById(R.id.course_alerts_textviewiew_course_designator);
-        String titleString = courseDesignator + "Alerts";
-        tvTitle.setText(titleString);
-
-    }
 
 
     @Override

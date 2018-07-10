@@ -173,12 +173,14 @@ public class AssessmentDetailActivity extends AppCompatActivity {
 
 
     private void setTextViews() {
-        TextView tvCourseDesignator = (TextView) findViewById(R.id.asmnt_dtl_textviewiew_course_designator);
-        TextView tvAssmntName = (TextView) findViewById(R.id.asmnt_dtl_textviewiew_name);
+        //TextView tvCourseDesignator = (TextView) findViewById(R.id.asmnt_dtl_textviewiew_course_designator);
+        //TextView tvAssmntName = (TextView) findViewById(R.id.asmnt_dtl_textviewiew_name);
         TextView tvStatus = (TextView) findViewById(R.id.assmnt_dtl_textview_status);
 
-        tvCourseDesignator.setText(courseDesignator);
-        tvAssmntName.setText(assmntName);
+        setTitle(courseDesignator + assmntName);
+
+        //tvCourseDesignator.setText(courseDesignator);
+        //tvAssmntName.setText(assmntName);
         tvStatus.setText(assmntStatus);
 
 

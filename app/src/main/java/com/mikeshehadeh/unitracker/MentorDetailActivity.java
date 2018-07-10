@@ -159,11 +159,11 @@ public class MentorDetailActivity extends AppCompatActivity {
     }
 
     private void setTextViews() {
-        TextView tvMentorName = (TextView) findViewById(R.id.mentor_dtl_textView_name);
+        //TextView tvMentorName = (TextView) findViewById(R.id.mentor_dtl_textView_name);
         TextView tvMentorEmail = (TextView) findViewById(R.id.assmnt_dtl_textview_status);
         TextView tvMentorPhone = (TextView) findViewById(R.id.mentor_dtl_textView_phone);
 
-        tvMentorName.setText(mentorName);
+        setTitle(mentorName);
         tvMentorEmail.setText(mentorEmail);
         tvMentorPhone.setText(mentorPhone);
 

@@ -33,7 +33,7 @@ public class TermDetailActivity extends AppCompatActivity {
     private int term;
     private TextView tvStartDate;
     private TextView tvEndDate;
-    private TextView tvTerm;
+    //private TextView tvTerm;
     private TextView tvTermStatus;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -152,8 +152,9 @@ public class TermDetailActivity extends AppCompatActivity {
     private void setTextViews() {
         tvStartDate = (TextView)findViewById(R.id.term_details_textview_start_date);
         tvEndDate = (TextView)findViewById(R.id.term_details_textview_end_date);
-        tvTerm = (TextView)findViewById(R.id.term_details_textview_term_number);
         tvTermStatus = (TextView)findViewById(R.id.term_details_textview_term_status);
+        String title = "Term " + term + " Details";
+        setTitle(title);
 
         String sql = "SELECT " + DBTables.termTable.COLUMN_TERM_STARTDATE + " FROM " +
                 DBTables.termTable.TABLE_NAME + " WHERE " +
@@ -168,7 +169,6 @@ public class TermDetailActivity extends AppCompatActivity {
         String endDate = statement.simpleQueryForString();
 
         tvTermStatus.setText("Status:  " + getTermStatus());
-        tvTerm.setText("Term " + term);
         tvStartDate.setText("Start Date:  " + startDate);
         tvEndDate.setText("End Date:  " + endDate);
 

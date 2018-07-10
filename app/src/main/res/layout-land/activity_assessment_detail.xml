@@ -40,10 +40,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Status:  Complete"
+            android:text="Objective"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_banner" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/assmnt_dtl_btn_edit"
@@ -92,40 +92,6 @@
             android:text="Alerts: "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/assmnt_dtl_banner"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/asmnt_dtl_textviewiew_name"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="8dp"
-            android:gravity="left|center_vertical"
-            android:text="Assessment 1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/asmnt_dtl_textviewiew_course_designator" />
-
-        <TextView
-            android:id="@+id/asmnt_dtl_textviewiew_course_designator"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:gravity="center"
-            android:text="C188 - "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toStartOf="@+id/assmnt_dtl_banner"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.constraint.Guideline

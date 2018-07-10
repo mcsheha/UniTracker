@@ -6,39 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".AdvancedActivity">
 
-    <ImageView
-        android:id="@+id/adv_banner"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/adv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="Advanced Menu"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="@+id/adv_banner"
-        app:layout_constraintStart_toStartOf="@+id/adv_banner"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/adv_btn_clear_all_data"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Clear All Data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adv_title" />
+        app:layout_constraintEnd_toEndOf="@+id/adv_btn_load_sample_data"
+        app:layout_constraintStart_toStartOf="@+id/adv_btn_load_sample_data"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/adv_btn_load_sample_data"

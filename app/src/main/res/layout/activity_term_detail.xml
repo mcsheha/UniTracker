@@ -24,7 +24,7 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <ImageView
+<!--    <ImageView
         android:id="@+id/term_details_banner"
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -42,25 +42,25 @@
         android:text="Term 0"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/term_details_textview_start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Start Date:  1 Jan 1980"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/term_details_textview_term_number" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/term_details_button_add_course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
         android:clickable="true"
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/term_details_recycler_view_courses"

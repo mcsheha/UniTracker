@@ -10,46 +10,16 @@
     android:isScrollContainer="true">
 
 
-    <ImageView
-        android:id="@+id/crse_dtl_banner"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/crse_dtl_textView_designator"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="C100 - "
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="@+id/crse_dtl_banner"
-        app:layout_constraintTop_toTopOf="@+id/crse_dtl_banner" />
-
-    <TextView
-        android:id="@+id/crse_dtl_name"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:gravity="center"
-        android:text="Database Systems"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toEndOf="@+id/crse_dtl_textView_designator"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/crse_dtl_textView_cus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="3 CUs"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crse_dtl_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/crse_dtl_textView_start_date"

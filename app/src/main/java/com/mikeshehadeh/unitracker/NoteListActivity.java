@@ -32,6 +32,8 @@ public class NoteListActivity extends AppCompatActivity {
 
         buildRecyclerView();
         configureHomeButton();
+        String title = getDesignator() + " Notes";
+        setTitle(title);
 
         buttonAddNote = findViewById(R.id.button_note_list_add);
         buttonAddNote.setOnClickListener(new View.OnClickListener(){
@@ -57,6 +59,16 @@ public class NoteListActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    private String getDesignator() {
+        String whereClause = DBTables.courseTable.COLUMN_COURSE_ID + "=?";
+        String[] whereArgs = new String[]{Long.toString(courseID)};
+
+        Cursor c = dB.query(DBTables.courseTable.TABLE_NAME, null, whereClause, whereArgs, null, null, null);
+        c.moveToFirst();
+        return c.getString(c.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_DESIGNATOR));
 
     }
 

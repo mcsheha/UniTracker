@@ -1,5 +1,6 @@
 package com.mikeshehadeh.unitracker;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -40,6 +41,9 @@ public class CourseMentorListActivity extends AppCompatActivity {
         configureBackButton();
         configureAddButton();
 
+        String title = getDesignator() + " Mentors";
+        setTitle(title);
+
         buttonAddMentor = findViewById(R.id.button_course_mentor_list_add);
         buttonAddMentor.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -62,6 +66,16 @@ public class CourseMentorListActivity extends AppCompatActivity {
 
             }
         }).attachToRecyclerView(mRecyclerView);
+    }
+
+    private String getDesignator() {
+        String whereClause = DBTables.courseTable.COLUMN_COURSE_ID + "=?";
+        String[] whereArgs = new String[]{Long.toString(courseID)};
+
+        Cursor c = dB.query(DBTables.courseTable.TABLE_NAME, null, whereClause, whereArgs, null, null, null);
+        c.moveToFirst();
+        return c.getString(c.getColumnIndex(DBTables.courseTable.COLUMN_COURSE_DESIGNATOR));
+
     }
 
     private void configureAddButton() {

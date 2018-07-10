@@ -98,8 +98,8 @@ public class CourseDetailActivity extends AppCompatActivity {
     }
 
     private void setTextViews() {
-        TextView tvCourseName = (TextView) findViewById(R.id.crse_dtl_name);
-        TextView tvCourseDesignator = (TextView) findViewById(R.id.crse_dtl_textView_designator);
+        //TextView tvCourseName = (TextView) findViewById(R.id.crse_dtl_name);
+        //TextView tvCourseDesignator = (TextView) findViewById(R.id.crse_dtl_textView_designator);
         TextView tvCourseStartDate = (TextView) findViewById(R.id.crse_dtl_textView_start_date);
         TextView tvCourseEndDate = (TextView) findViewById(R.id.crse_dtl_textView_endDate);
         TextView tvCus = (TextView) findViewById(R.id.crse_dtl_textView_cus);
@@ -112,11 +112,14 @@ public class CourseDetailActivity extends AppCompatActivity {
             courseEndDate = "";
         }
 
-        tvCourseName.setText(courseName);
-        tvCourseDesignator.setText(courseDesignator);
+        //tvCourseName.setText(courseName);
+        //tvCourseDesignator.setText(courseDesignator);
         tvCourseStartDate.setText("Start Date:  " + courseStartDate);
         tvCourseEndDate.setText("End Date:  " + courseEndDate);
         tvCus.setText(courseCus + " CUs");
+
+        String title = courseDesignator + courseName;
+        setTitle(title);
 
 
     }

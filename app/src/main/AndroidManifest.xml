@@ -29,42 +29,43 @@
         </activity>
         <activity
             android:name=".TermListActivity"
-            android:label="UniTracker - Term List" />
+            android:label="Term List" />
         <activity
             android:name=".TermDetailActivity"
             android:label="UniTracker - Term Details" />
         <activity
             android:name=".CourseListActivity"
-            android:label="UniTracker - Course List" />
+            android:label="Course List" />
         <activity
             android:name=".CourseDetailActivity"
             android:label="UniTracker - Course Details" />
-        <activity android:name=".AdvancedActivity" />
+        <activity android:name=".AdvancedActivity"
+            android:label="Advanced Menu"/>
         <activity
             android:name=".MentorListActivity"
-            android:label="UniTracker - Mentors" />
+            android:label="Mentors List" />
         <activity
             android:name=".MentorDetailActivity"
-            android:label="UniTracker - Mentor Details" />
+            android:label="Mentor Details" />
         <activity
             android:name=".AssessmentListActivity"
-            android:label="UniTracker - Assessment List" />
+            android:label="Assessment List" />
         <activity android:name=".AssessmentItem" />
         <activity
             android:name=".AssessmentDetailActivity"
-            android:label="UniTracker - Assessment Details" />
+            android:label="Assessment Details" />
         <!-- <activity android:name=".AlertListActivity"></activity> -->
         <activity
             android:name=".NoteListActivity"
-            android:label="UniTracker - Notes List" />
+            android:label="Notes List" />
         <activity
             android:name=".NoteDetailActivity"
             android:label="UniTracker - Note Details" />
         <activity
             android:name=".CourseAlertListActivity"
             android:label="UniTracker - Course Alerts" />
-        <activity android:name=".CourseMentorActivity" />
-        <activity android:name=".CourseMentorListActivity"></activity>
+        <activity android:name=".CourseMentorListActivity"
+            android:label="Assigned Mentors"></activity>
     </application>
 
 </manifest>

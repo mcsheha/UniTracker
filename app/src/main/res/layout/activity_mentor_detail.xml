@@ -8,26 +8,6 @@
     android:id="@+id/relativeLayout">
 
 
-    <ImageView
-        android:id="@+id/assmnt_dtl_banner"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/mentor_dtl_textView_name"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:text="Joyce Dahlhauser"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="@+id/assmnt_dtl_banner"
-        app:layout_constraintTop_toTopOf="@+id/assmnt_dtl_banner" />
-
     <TextView
         android:id="@+id/assmnt_dtl_textview_status"
         android:layout_width="wrap_content"
@@ -37,7 +17,7 @@
         android:text="joyce@wgu.edu"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_banner" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/mentor_dtl_btn_back"

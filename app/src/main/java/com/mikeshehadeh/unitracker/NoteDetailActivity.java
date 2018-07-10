@@ -145,12 +145,11 @@ public class NoteDetailActivity extends AppCompatActivity {
     }
 
     private void setTextViews() {
-        TextView tvNoteTitle = (TextView) findViewById(R.id.note_detail_title);
         TextView tvNoteText = (TextView) findViewById(R.id.note_detail_note_text);
 
         String noteTitle = "Note for " + courseDesignator + ":";
 
-        tvNoteTitle.setText(noteTitle);
+        setTitle(noteTitle);
         tvNoteText.setText(noteText);
 
 

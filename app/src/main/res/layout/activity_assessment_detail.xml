@@ -42,7 +42,7 @@
             android:text="Status:  Complete"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_banner" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/assmnt_dtl_btn_edit"
@@ -93,35 +93,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/assmnt_dtl_textview_status" />
 
-        <ImageView
-            android:id="@+id/assmnt_dtl_banner"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/asmnt_dtl_textviewiew_name"
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
-            android:gravity="center"
-            android:text="Assessment 1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toEndOf="@+id/asmnt_dtl_textviewiew_course_designator"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/asmnt_dtl_textviewiew_course_designator"
-            android:layout_width="wrap_content"
-            android:layout_height="64dp"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:text="C188 - "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toStartOf="@+id/assmnt_dtl_banner"
-            app:layout_constraintTop_toTopOf="@+id/assmnt_dtl_banner" />
     </android.support.constraint.ConstraintLayout>
 
 
