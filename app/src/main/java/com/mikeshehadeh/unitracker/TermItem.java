@@ -19,7 +19,7 @@ public class TermItem {
 
 
     public TermItem(int termNumber, Calendar startDate) {
-        mImageResource = R.drawable.wgu_logo_cropped;
+        mImageResource = R.drawable.wgu_logo;
         this.termNumber = termNumber;
         this.termDates = termDates;
         this.startDate = startDate;

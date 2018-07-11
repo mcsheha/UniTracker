@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wgu_logo_cropped" />
+        app:srcCompat="@drawable/wgu_logo" />
 
     <Button
         android:id="@+id/btn_terms"

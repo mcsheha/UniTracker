@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wgu_logo_cropped" />
+        app:srcCompat="@drawable/wgu_logo" />
 
     <Button
         android:id="@+id/home_btn_advanced"

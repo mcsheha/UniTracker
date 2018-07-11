@@ -44,7 +44,7 @@
             app:backgroundTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/course_alerts_recycler_view_alerts"
             app:layout_constraintEnd_toEndOf="@+id/course_alerts_recycler_view_alerts"
-            app:srcCompat="@drawable/plus_thin" />
+            app:srcCompat="@drawable/plus" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/course_alerts_btn_back"
@@ -56,7 +56,7 @@
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/back_thin" />
+            app:srcCompat="@drawable/back" />
 
     </android.support.constraint.ConstraintLayout>
 

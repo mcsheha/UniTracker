@@ -18,7 +18,7 @@
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/term_details_recycler_view_courses"
         app:layout_constraintEnd_toEndOf="@+id/term_details_recycler_view_courses"
-        app:srcCompat="@drawable/plus_thin" />
+        app:srcCompat="@drawable/plus" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/term_details_recycler_view_courses"
@@ -98,7 +98,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/back_thin" />
+        app:srcCompat="@drawable/back" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/term_details_button_edit_term"
@@ -111,7 +111,7 @@
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:srcCompat="@drawable/trash_thin" />
+        app:srcCompat="@drawable/trash" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"

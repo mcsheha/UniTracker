@@ -38,7 +38,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/home_thin" />
+        app:srcCompat="@drawable/home" />
 
 
 </android.support.constraint.ConstraintLayout>

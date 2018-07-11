@@ -56,7 +56,7 @@
             app:backgroundTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:srcCompat="@drawable/edit_thin" />
+            app:srcCompat="@drawable/edit" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/assmnt_dtl_btn_add_alert"
@@ -69,7 +69,7 @@
             app:backgroundTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/assmnt_dtl_recycler_view_alerts"
-            app:srcCompat="@drawable/plus_thin" />
+            app:srcCompat="@drawable/plus" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/assmnt_dtl_btn_back"
@@ -81,7 +81,7 @@
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/back_thin" />
+            app:srcCompat="@drawable/back" />
 
         <TextView
             android:id="@+id/assmnt_dtl_textView_alet_heading"

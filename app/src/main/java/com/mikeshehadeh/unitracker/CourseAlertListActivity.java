@@ -116,7 +116,11 @@ public class CourseAlertListActivity extends AppCompatActivity {
         final View addCourseAlertDialogView = factory.inflate(R.layout.dialog_create_course_alert, null);
         final AlertDialog createCourseAlert = new AlertDialog.Builder(this).create();
         createCourseAlert.setView(addCourseAlertDialogView);
-        //dialogAlertDate = (EditText)findViewById(R.id.create_course_alert_dialog_edt_txt_date);
+        dialogAlertDate = (EditText)addCourseAlertDialogView.findViewById(R.id.create_course_alert_dialog_edt_txt_date);
+        Calendar cal = Calendar.getInstance();
+        String todayInString = parseCalToString(cal);
+        alertDateTime = todayInString;
+        dialogAlertDate.setText(todayInString);
 
 
         //save new alert button clicked
@@ -154,12 +158,13 @@ public class CourseAlertListActivity extends AppCompatActivity {
             }
         });
 
+        //Date edit text clicked
         addCourseAlertDialogView.findViewById(R.id.create_course_alert_dialog_edt_txt_date).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 getDateInput();
-                EditText et = (EditText) addCourseAlertDialogView.findViewById(R.id.create_course_alert_dialog_edt_txt_date);
-                et.setText(alertDateTime);
+                //EditText et = (EditText) addCourseAlertDialogView.findViewById(R.id.create_course_alert_dialog_edt_txt_date);
+                dialogAlertDate.setText(alertDateTime);
             }
         });
 
@@ -181,6 +186,9 @@ public class CourseAlertListActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.set(year,month,dayOfMonth);
                 alertDateTime = parseCalToString(cal);
+                dialogAlertDate.setText(alertDateTime);
+
+
 
             }
         };

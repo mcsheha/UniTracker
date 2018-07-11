@@ -29,7 +29,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/back_thin" />
+        app:srcCompat="@drawable/back" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/mentor_dtl_btn_edit"
@@ -42,7 +42,7 @@
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/edit_thin" />
+        app:srcCompat="@drawable/edit" />
 
     <TextView
         android:id="@+id/mentor_dtl_textView_phone"

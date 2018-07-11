@@ -18,7 +18,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/home_thin" />
+        app:srcCompat="@drawable/home" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/button_crs_list_add"
@@ -30,7 +30,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/plus_thin" />
+        app:srcCompat="@drawable/plus" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_crs_list"

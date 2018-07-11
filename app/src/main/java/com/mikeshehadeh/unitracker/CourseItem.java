@@ -12,7 +12,7 @@ public class CourseItem {
 
 
     public CourseItem(int courseNumber) {
-        mImageResource = R.drawable.wgu_logo_cropped;
+        mImageResource = R.drawable.wgu_logo;
         this.courseNumber = courseNumber;
     }
 
