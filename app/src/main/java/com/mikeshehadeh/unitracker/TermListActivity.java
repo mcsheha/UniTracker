@@ -3,11 +3,13 @@ package com.mikeshehadeh.unitracker;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,7 @@ public class TermListActivity extends AppCompatActivity {
     private EditText editTextInsert;
     private EditText editTextRemove;
     private Calendar selectedStartDate;
+    private int term;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,12 @@ public class TermListActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                removeItem((long) viewHolder.itemView.getTag());
+                long termLong = (long) viewHolder.itemView.getTag();
+                term = (int) termLong;
+                if(!restrictedFromDelete()){
+                    showConfirmDialog();
+
+                }
 
             }
         }).attachToRecyclerView(mRecyclerView);
@@ -249,19 +257,69 @@ public class TermListActivity extends AppCompatActivity {
     }
 
     public void removeItem (long termID) {
-        dB.delete(DBTables.termTable.TABLE_NAME,
-                DBTables.termTable.COLUMN_TERM_ID + "=" + termID, null);
-        mAdapter.swapCursor(getAllItems());
-    }
-/*
-
-    public void removeItem (int position) {
-        mTermList.remove(position);
-        mAdapter.notifyItemRemoved(position);
-
+        if(!restrictedFromDelete()){
+            dB.delete(DBTables.termTable.TABLE_NAME,
+                    DBTables.termTable.COLUMN_TERM_ID + "=" + termID, null);
+            mAdapter.swapCursor(getAllItems());
+        }
 
     }
-*/
+
+    //check if there are subsequent terms or courses assigned.
+    private boolean restrictedFromDelete() {
+        boolean bool = false;
+        int maxTerm = 0;
+        Cursor c = dB.query(DBTables.termTable.TABLE_NAME, null,null,null,null,null,null);
+        c.moveToFirst();
+        for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int i = c.getInt(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
+            if(i>maxTerm){maxTerm = i;}
+        }
+        if (maxTerm > term) {
+            bool = true;
+        }
+        String whereClause = DBTables.courseTable.COLUMN_TERM_ID + "=?";
+        String[] whereArgs = new String[]{Integer.toString(term)};
+        Cursor c2 = dB.query(DBTables.courseTable.TABLE_NAME, null,
+                whereClause, whereArgs, null,null,null);
+        if(c2!=null && c2.getCount()>0) {bool = true;}
+        if(bool){
+            //toast
+            String toastString = "You must delete subsequent terms and/or remove assigned courses prior to deleting this term.";
+            Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_LONG).show();
+            mAdapter.swapCursor(getAllItems());
+
+        }
+        return bool;
+    }
+
+    private void showConfirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Term " + term +"?");
+        builder.setMessage("You are about to delete Term " + term + ". Do you really want to proceed?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dB.delete(DBTables.termTable.TABLE_NAME,
+                        DBTables.termTable.COLUMN_TERM_ID + "=" + term, null);
+                Toast.makeText(getApplicationContext(), "Term deleted!", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                mAdapter.swapCursor(getAllItems());
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Cancelled.", Toast.LENGTH_SHORT).show();
+                mAdapter.swapCursor(getAllItems());
+
+            }
+        });
+
+        builder.show();
+    }
 
     private String getNextTermEndDate(String newTermStartDate) {
         Calendar endDate = parseStringToCal(newTermStartDate);

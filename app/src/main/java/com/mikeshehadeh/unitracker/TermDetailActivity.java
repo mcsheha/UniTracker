@@ -220,10 +220,40 @@ public class TermDetailActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showConfirmDialog();
+                if(!restrictedFromDelete()){
+                    showConfirmDialog();
+
+                }
             }
         });
     }
+
+    //check if there are subsequent terms or courses assigned.
+    private boolean restrictedFromDelete() {
+        boolean bool = false;
+        int maxTerm = 0;
+        Cursor c = dB.query(DBTables.termTable.TABLE_NAME, null,null,null,null,null,null);
+        c.moveToFirst();
+        for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            int i = c.getInt(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
+            if(i>maxTerm){maxTerm = i;}
+        }
+        if (maxTerm > term) {
+            bool = true;
+        }
+        String whereClause = DBTables.courseTable.COLUMN_TERM_ID + "=?";
+        String[] whereArgs = new String[]{Integer.toString(term)};
+        Cursor c2 = dB.query(DBTables.courseTable.TABLE_NAME, null,
+                whereClause, whereArgs, null,null,null);
+        if(c2!=null && c2.getCount()>0) {bool = true;}
+        if(bool){
+            //toast
+            String toastString = "You must delete subsequent terms and/or remove assigned courses prior to deleting this term.";
+            Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_LONG).show();
+        }
+        return bool;
+    }
+
 
     private void showConfirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -33,8 +33,10 @@ public class CourseDetailActivity extends AppCompatActivity {
     private String courseStartDate;
     private String courseEndDate;
     private String courseCus;
+    private String courseStatus;
     private EditText etStartDate;
     private EditText etEndDate;
+    private int currentTermID;
 
 
     @Override
@@ -54,6 +56,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         configureAlertButton();
         configureMentorsButton();
         configureEditButton();
+        setCurrentTermID();
         getAllItems();
         setTextViews();
 
@@ -76,6 +79,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         editCourse.setView(editCourseDialogView);
         etStartDate = (EditText)editCourseDialogView.findViewById(R.id.edit_course_dialog_et_start_date);
         etEndDate = (EditText)editCourseDialogView.findViewById(R.id.edit_course_dialog_et_end_date);
+
         //setStartAndEndDates();
         if (courseStartDate != null && !courseStartDate.isEmpty() && !courseStartDate.equals("null")){
             etStartDate.setText(courseStartDate);
@@ -304,9 +308,12 @@ public class CourseDetailActivity extends AppCompatActivity {
         TextView tvCourseStartDate = (TextView) findViewById(R.id.crse_dtl_textView_start_date);
         TextView tvCourseEndDate = (TextView) findViewById(R.id.crse_dtl_textView_endDate);
         TextView tvCus = (TextView) findViewById(R.id.crse_dtl_textView_cus);
+        TextView tvStatus = (TextView)findViewById(R.id.crse_dtl_textView_termStatus);
+
 
         if (courseStartDate == null) {
             courseStartDate = "";
+
         }
 
         if (courseEndDate == null) {
@@ -318,11 +325,108 @@ public class CourseDetailActivity extends AppCompatActivity {
         tvCourseStartDate.setText("Start Date:  " + courseStartDate);
         tvCourseEndDate.setText("End Date:  " + courseEndDate);
         tvCus.setText(courseCus + " CUs");
+        setCourseStatus();
+        String courseStatusString = "Status: " + courseStatus;
+        tvStatus.setText(courseStatusString);
 
         String title = courseDesignator + courseName;
         setTitle(title);
 
 
+    }
+
+    private void setCurrentTermID(){
+        currentTermID = -1;
+        Calendar calToday = Calendar.getInstance();
+        //Normalize calToday
+        calToday = parseStringToCal(parseCalToString(calToday));
+        //query term table, if the start date is before or equal to today,
+        // and the end date is equal or after today term ID is the current term
+        Cursor c = dB.query(DBTables.termTable.TABLE_NAME,null,null,
+                null,null,null,null);
+        c.moveToFirst();
+        for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            // The Cursor is now set to the right position
+            String termStart = c.getString(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_STARTDATE));
+            String termEnd = c.getString(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_ENDDATE));
+            int termNumber = c.getInt(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_ID));
+            Calendar termStartCal = parseStringToCal(termStart);
+            Calendar termEndCal = parseStringToCal(termEnd);
+            if((termStartCal.equals(calToday) || termStartCal.before(calToday))
+                    && (termEndCal.equals(calToday) || termEndCal.after(calToday))){
+                currentTermID = termNumber;
+            }
+        }
+
+
+    }
+
+    private void setCourseStatus() {
+        //Check if currentTermID is -1, that means there is no current course
+        courseStatus = "Unknown";
+        //There is a current term
+        if(currentTermID > -1) {
+            String whereClause = DBTables.termTable.COLUMN_TERM_ID + "=?";
+            String[] whereArgs = new String[]{Integer.toString(currentTermID)};
+            Cursor c = dB.query(DBTables.termTable.TABLE_NAME, null,
+                    whereClause, whereArgs, null, null, null);
+            c.moveToFirst();
+            String termStart = c.getString(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_STARTDATE));
+            String termEnd = c.getString(c.getColumnIndex(DBTables.termTable.COLUMN_TERM_ENDDATE));
+            Calendar termStartCal = parseStringToCal(termStart);
+            Calendar termEndCal = parseStringToCal(termEnd);
+            Calendar calToday = Calendar.getInstance();
+            //Normalize calToday
+            calToday = parseStringToCal(parseCalToString(calToday));
+
+
+            if ((courseStartDate != null && !courseStartDate.isEmpty())
+                    && (courseEndDate != null && !courseEndDate.isEmpty())) {
+                Calendar calCourseStartDate = parseStringToCal(courseStartDate);
+                Calendar calCourseEndDate = parseStringToCal(courseStartDate);
+                //if enddate is before today, set to "completed"
+                if (calCourseEndDate.before(calToday)) {
+                    courseStatus = "Completed";
+                }
+                //if course start date is after current term end, set to "Future Term"
+                if (calCourseStartDate.after(termEndCal)) {
+                    courseStatus = "Future Term";
+                }
+                //if course start is before term end, and, course start after or at term start, set "currently enrolled"
+                if (calCourseStartDate.before(termEndCal)
+                        && (calCourseStartDate.equals(termStartCal) || calCourseStartDate.after(termStartCal))) {
+                    courseStatus = "Currently Enrolled";
+                }
+            }
+            //No course start date, set it to "not scheduled"
+            if (courseStartDate == null || courseStartDate.isEmpty()) {
+                courseStatus = "Not Scheduled";
+            }
+        }
+        //There is no current term
+        else{
+            Calendar calToday = Calendar.getInstance();
+            //Normalize calToday
+            calToday = parseStringToCal(parseCalToString(calToday));
+            if ((courseStartDate != null && !courseStartDate.isEmpty())
+                    && (courseEndDate != null && !courseEndDate.isEmpty())) {
+                Calendar calCourseStartDate = parseStringToCal(courseStartDate);
+                Calendar calCourseEndDate = parseStringToCal(courseStartDate);
+                //if enddate is before today, set to "completed"
+                if (calCourseEndDate.before(calToday)) {
+                    courseStatus = "Completed";
+                }
+                //if course start date is after current term end, set to "Future Term"
+                if (calCourseStartDate.after(calToday)) {
+                    courseStatus = "Future Term";
+                }
+
+            }
+            //No course start date, set it to "not scheduled"
+            if (courseStartDate == null || courseStartDate.isEmpty()) {
+                courseStatus = "Not Scheduled";
+            }
+        }
     }
 
     private void configureBackButton() {

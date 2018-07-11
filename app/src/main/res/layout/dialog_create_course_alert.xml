@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/create_course_alert_dialog_banner"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,13 +18,15 @@
     <TextView
         android:id="@+id/create_course_alert_dialog_title"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:gravity="left|center_vertical"
         android:text="Add New Alert"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/create_course_alert_dialog_banner"
         app:layout_constraintEnd_toEndOf="@+id/create_course_alert_dialog_banner"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/create_course_alert_dialog_banner"
         app:layout_constraintTop_toTopOf="@+id/create_course_alert_dialog_banner" />
 
@@ -95,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +108,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Add Alert"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/create_course_alert_btn_cancel"
         app:layout_constraintTop_toBottomOf="@+id/create_course_alert_dialog_edt_txt_date" />
 
